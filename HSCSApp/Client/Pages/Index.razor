@@ -1,0 +1,512 @@
+﻿@page "/"
+@layout HomePage
+@inject IJSRuntime js
+
+<title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
+
+<nav>
+    <div id="nav-header" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
+        <!-- Social Media -->
+        <div class="social-media d-flex align-items-center justify-content-center col-4">
+            <span>Follow Us:</span>
+            <ul class="media-list col-7 d-flex align-items-center justify-content-around">
+                <li class="media-list-item">
+                    <a href="" class="fab fa-facebook-square fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" class="fab fa-instagram-square fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" class="fab fa-linkedin fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" class="fab fa-youtube-square fa-2x"></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Company Logo -->
+        <div class="company-logo col-4 d-flex justify-content-center">
+            <img src="images/logo_prototype.svg" alt="Company Logo" />
+        </div>
+        <!-- User Login -->
+        <div class="user col-4 d-flex justify-content-center">
+            <a href="">
+                My Account
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-menu col-md-12 d-flex flex-row align-items-center justify-content-around">
+        <div class="company-brand col-4 d-flex justify-content-center">
+            <a href="" class="brand">
+                <img src="images/brand_prototype.svg" alt="Company Brand Logo">
+            </a>
+        </div>
+        <div class="nav-list-container col-8 d-flex align-items-center justify-content-around">
+            <ul class="nav-list">
+                <li class="nav-list-item">
+                    <a href="">Home</a>
+                </li>
+                <li class="nav-list-item">
+                    <div class="service-dropdown" style="cursor: pointer;" @onmouseout="Service_focusOut">
+                        <a type="button" @onclick="Service_Clicked">
+                            Services
+                            <i class="fas fa-caret-down"></i>
+                            <i class="fas fa-caret-left" style="display: none;"></i>
+                        </a>
+
+                        <div class="@serviceMenu">
+                            <ul>
+                                <li>
+                                    <a href="">Planning and design</a>
+                                </li>
+                                <li>
+                                    <a href="">Construction</a>
+                                </li>
+                                <li>
+                                    <a href="">Renovation</a>
+                                </li>
+                                <li>
+                                    <a href="">Mechanical</a>
+                                </li>
+                                <li>
+                                    <a href="">Electrical</a>
+                                </li>
+                                <li>
+                                    <a href="">Electronics</a>
+                                </li>
+                                <li>
+                                    <a href="">Plumbing</a>
+                                </li>
+                                <li>
+                                    <a href="">Consultation</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-list-item">
+                    <a href="">Portfolio</a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="">Blog</a>
+                </li>
+            </ul>
+            <a href="" class="contact-btn" @onclick="ContactBtn_Clicked">Contact Us</a>
+        </div>
+    </div>
+    <div class="collapse">
+        <div class="collapse-header">
+            <div class="col-4">
+                <a href="">
+                    Subscribe
+                </a>
+            </div>
+            <div class="col-4">
+                <img src="images/logo_prototype.svg" alt="">
+            </div>
+            <div class="col-4">
+                <a href="">
+                    <i class="fas fa-user-astronaut fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        <div class="collapse-menu">
+            <div class="col-10">
+                <a href="">
+                    <img src="images/brand.svg" alt="">
+                </a>
+            </div>
+            <div class="col-2">
+                <a href="" class="@hamburger" @onclick="Toggler">
+                    <i class="fas fa-bars fa-lg"></i>
+                </a>
+                <a href="" class="@close" @onclick="Toggler">
+                    <i class="fas fa-times fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        <div class="toggle-menu">
+
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container-fluid">
+        <div class="row d-flex">
+            <div class="col-md-12 d-flex flex-row  justify-content-center align-items-center">
+
+                <!-- Slogan -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hopestone Construction Services</h5>
+                            <p class="card-text">
+                                We are a Registered Construction Firm offering Planning & Design,
+                                Building Construction, Renovation, Mechanical, Electronics, Electrical, Plumbing, and
+                                other construction services. You name it, we build it</p>
+                            <br>
+                            <p class="card-text">
+                                We aim to provide outstanding Customer Service and distinctive interior/exterior
+                                designs.
+                            </p>
+                            <a href="" class="btn cta-btn">Get A Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature -->
+                <div id="feature" class="col-6">
+                    <!-- Top Row-->
+                    <div id="topRow" class="row">
+                        <div class="col-12">
+                            <div class="flip-box">
+                                <div class="flip-box-inner">
+                                    <div class="flip-box-front">
+                                        <img src="images/hero1.jpg" alt="">
+                                    </div>
+                                    <div class="flip-box-back">
+                                        <img src="images/feature1.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mid Row -->
+                    <div id="midRow" class="row">
+                        <div class="col-12 d-flex flex-row">
+                            <div class="col-6">
+                                <div class="flip-box">
+                                    <div class="flip-box-inner">
+                                        <div class="flip-box-front">
+                                            <img src="images/hero2.jpg" alt="">
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <img src="images/feature2.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="flip-box">
+                                    <div class="flip-box-inner">
+                                        <div class="flip-box-front">
+                                            <img src="images/hero3.jpg" alt="">
+                                        </div>
+                                        <div class="flip-box-back">
+                                            <img src="images/feature3.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bottom Row -->
+                    <div id="botRow" class="row">
+                        <div class="col-12">
+                            <div class="flip-box">
+                                <div class="flip-box-inner">
+                                    <div class="flip-box-front">
+                                        <img src="images/hero4.jpg" alt="">
+                                    </div>
+                                    <div class="flip-box-back">
+                                        <img src="images/feature4.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services pt-5">
+    <div class="service-container">
+
+        <div class="col-12">
+
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/planning.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Planning & Design</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/construction.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Construction</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/renovation.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Renovation</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/mechanical.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Mechanical</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/electrical.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Electrical</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/electronics.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Electronics</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/plumbing.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Plumbing</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="item-container">
+                    <div class="item-content">
+                        <div class="img-container">
+                            <div class="img-overlay">
+                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                    Get a quote</a>
+                            </div>
+                            <img loading="lazy" src="images/consultation.jpg" alt="">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-header">Consultation</div>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <div class="col-12">
+
+        <div class="box">
+            <div class="box-header">
+                About
+            </div>
+            <div class="box-body">
+                <ul>
+                    <li>
+                        <a href="">About us</a>
+                    </li>
+                    <li>
+                        <a href="">What is Hopestone</a>
+                    </li>
+                    <li>
+                        <a href="">Our Customer</a>
+                    </li>
+                    <li>
+                        <a href="">Careers</a>
+                    </li>
+                    <li>
+                        <a href="">Partner with us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-header">
+                Support
+            </div>
+            <div class="box-body">
+                <ul>
+                    <li>
+                        <a href="">Help center</a>
+                    </li>
+                    <li>
+                        <a href="">Inquiry status</a>
+                    </li>
+                    <li>
+                        <a href="">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="news-letter" class="box">
+            <div class="box-header">
+                News Letter
+            </div>
+            <div class="box-body">
+                <label for="newsLetter">Subscribe to our monthly news letter</label>
+                <form action="">
+                    <input type="email" name="" id="newsLetter">
+                    <button type="submit">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="terms">
+            <ul class="d-flex flex-row justify-content-around align-items-center">
+                <li>
+                    <a href="">Terms of use</a>
+                </li>
+                <li>
+                    <a href="">Privacy policy</a>
+                </li>
+                <li>
+                    <a href="">Cookie setting</a>
+                </li>
+                <li>
+                    <a href="">FAQ</a>
+                </li>
+                <li>
+                    <a href="">Sitemap</a>
+                </li>
+                <li>
+                    <a href="">Credits</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="rights-reserve w-100">
+            &COPY; Copyright 2021 Hopestone Construction Services. All rights reserved.
+        </div>
+    </div>
+</section>
+
+@code {
+
+    private string hamburger;
+    private string close = "hide";
+
+    private string serviceMenu = "hide";
+    private void ContactBtn_Clicked()
+    {
+        js.InvokeVoidAsync("contactBtn_Clicked");
+    }
+
+    private void Toggler()
+    {
+        if (close == "hide")
+        {
+            hamburger = "hide";
+            close = string.Empty;
+        }
+        else
+        {
+            hamburger = string.Empty;
+            close = "hide";
+        }
+    }
+
+    private void Service_Clicked()
+    {
+        if (serviceMenu == "hide")
+        {
+            serviceMenu = "service-menu";
+        }
+        else
+        {
+            serviceMenu = "hide";
+        }
+    }
+
+    private void Service_focusOut()
+    {
+        serviceMenu = "hide";
+    }
+
+
+
+
+}
