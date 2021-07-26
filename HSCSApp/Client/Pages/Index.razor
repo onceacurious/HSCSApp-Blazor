@@ -2,6 +2,27 @@
 @layout HomePage
 @inject IJSRuntime js
 
+<!--
+    Notes:
+    There will be a floating card at the very start of the application for new updates
+    and other thing that needs attention and can be close afterwards.
+-->
+
+<style>
+    #quotation {
+        position: relative;
+        width: 80% !important;
+        height: max-content !important;
+        color: var(--aqua) !important;
+        background-color: var(--white) !important;
+        padding: 20px 10px 10px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--gray);
+
+        z-index: 1;
+    }
+</style>
+
 <title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
 
 <nav>
@@ -142,6 +163,71 @@
     </div>
 </nav>
 
+<div class="@serviceQuote">
+    <h4>Service Quotation</h4>
+    <EditForm id="quotation" Model="@quote">
+        <button id="quote-close" type="button" @onclick="Close_Quote">
+            <i class="fas fa-times fa-lg" style="color: var(--aqua);"></i>
+        </button>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <InputText id="name" @bind-Value="@quote.ClientName" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number</label>
+                    <InputText id="contactNumber" @bind-Value="@quote.ContactNumber" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <InputText id="emailAddress" @bind-Value="@quote.EmailAddress" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!--
+                            Upon selection one of the option, it will incur an error 
+                            since the back end wasn't yet implemented
+                            -->
+                <div class="form-group">
+                    <label for="serviceName">Service Name</label>
+                    <InputSelect id="serviceName" @bind-Value="@quote.Services" class="form-control">
+                        <option value="none" hidden>--Select--</option>
+                        <option value="@quote.ServiceId">Planning & Design</option>
+                        <option value="2">Construction</option>
+                        <option value="3">Electrical</option>
+                        <option value="4">Electronics</option>
+                        <option value="5">Mechanical</option>
+                        <option value="6">Renovation</option>
+                        <option value="7">Plumbing</option>
+                        <option value="8">Consultation</option>
+                    </InputSelect>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="details">Brief details of inquiry</label>
+            <InputTextArea id="details" @bind-Value="@quote.Details" class="form-control" />
+        </div>
+
+        <div class="row">
+            <div class="col-6 text-center">
+                <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+            <div class="col-6 text-center">
+                <button class="btn btn-danger" type="button" @onclick="Close_Quote">Cancel</button>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
 <section class="hero">
     <div class="container-fluid">
         <div class="row d-flex">
@@ -234,8 +320,7 @@
 </section>
 
 <section class="services pt-5">
-    <div class="service-container">
-
+    <div class="services-container">
         <div class="col-12">
 
             <div class="box">
@@ -243,7 +328,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/planning.jpg" alt="">
@@ -260,7 +345,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/construction.jpg" alt="">
@@ -277,7 +362,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/renovation.jpg" alt="">
@@ -294,7 +379,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/mechanical.jpg" alt="">
@@ -314,7 +399,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/electrical.jpg" alt="">
@@ -331,7 +416,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/electronics.jpg" alt="">
@@ -348,7 +433,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/plumbing.jpg" alt="">
@@ -365,7 +450,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a href="" class="btn"><i class="fas fa-edit"></i>
+                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
                                     Get a quote</a>
                             </div>
                             <img loading="lazy" src="images/consultation.jpg" alt="">
@@ -380,6 +465,11 @@
         </div>
     </div>
 </section>
+
+<!-- 
+    Blog & Portfolio
+    This two additional section will display plus button if nothing to display using if condition
+    -->
 
 <section class="footer">
     <div class="col-12">
@@ -474,6 +564,9 @@
     </div>
 </section>
 
+
+
+
 @code {
 
     private string hamburger;
@@ -482,6 +575,11 @@
     private string toggleMenu = "hide";
 
     private string serviceMenu = "hide";
+
+    ServiceQuotation quote = new ServiceQuotation();
+
+    Service myServices = new Service();
+    private string serviceQuote = "hide";
     private void ContactBtn_Clicked()
     {
         js.InvokeVoidAsync("contactBtn_Clicked");
@@ -518,6 +616,16 @@
     private void Service_focusOut()
     {
         serviceMenu = "hide";
+    }
+
+    private void Close_Quote()
+    {
+        serviceQuote = "hide";
+    }
+
+    private void Open_Quote()
+    {
+        serviceQuote = "service-quote-popover";
     }
 
 }

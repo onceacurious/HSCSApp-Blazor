@@ -423,6 +423,7 @@ section.hero #feature img {
 }
 
 section.services {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   background-color: var(--aqua-70);
@@ -435,6 +436,7 @@ section.services {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 1;
 }
 
 section.services .col-12 {
@@ -692,5 +694,67 @@ section.footer .col-12 .rights-reserve {
     height: -moz-fit-content !important;
     height: fit-content !important;
   }
+}
+
+.service-quote-popover {
+  -webkit-animation: fade 5s;
+          animation: fade 5s;
+  position: fixed;
+  top: 10%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  color: var(--aqua);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 5;
+}
+
+.service-quote-popover h4 {
+  background-color: var(--white);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.service-quote-popover #quote-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 412px) {
+  .service-quote-popover {
+    top: 15% !important;
+    -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+            justify-content: flex-start !important;
+    font-size: 0.9 !important;
+  }
+  .service-quote-popover h4 {
+    font-size: 0.75rem !important;
+  }
+  .service-quote-popover .form-group,
+  .service-quote-popover label {
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+.hide {
+  display: none;
 }
 /*# sourceMappingURL=Index.razor.css.map */

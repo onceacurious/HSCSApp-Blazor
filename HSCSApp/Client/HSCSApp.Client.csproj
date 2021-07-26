@@ -38,4 +38,8 @@
     </None>
   </ItemGroup>
 
+  <PropertyGroup>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  </PropertyGroup>
+
 </Project>
