@@ -1,3 +1,1 @@
-function contactBtn_Clicked() {
-  console.log("Dipota no?");
-}
+console.log("JS is active");

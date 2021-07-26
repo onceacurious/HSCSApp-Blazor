@@ -179,6 +179,27 @@ nav .collapse-header .col-4 {
           justify-content: center;
 }
 
+nav .collapse-header #signin-signup[data-descr] {
+  position: relative;
+}
+
+nav .collapse-header #signin-signup[data-descr]:hover::after, nav .collapse-header #signin-signup[data-descr]:focus::after {
+  position: absolute;
+  content: attr(data-descr);
+  right: 0;
+  top: 24px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--aqua);
+  padding: 5px;
+  color: var(--white);
+  font-size: 14px;
+  z-index: 1;
+}
+
 nav .collapse-menu {
   display: inherit;
   -webkit-box-orient: horizontal;
@@ -207,6 +228,13 @@ nav .collapse-menu .col-2 {
           justify-content: center;
 }
 
+nav .collapse-menu .col-2 button {
+  border: none !important;
+  outline: none !important;
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
 nav .collapse-menu .col-10 {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -215,6 +243,19 @@ nav .collapse-menu .col-10 {
 
 nav .collapse-menu img {
   width: 200px;
+}
+
+nav .collapse .toggle-menu {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+nav .collapse .toggle-menu a:hover {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--gray);
 }
 
 nav .hide {
@@ -412,6 +453,7 @@ section.services .col-12 {
 
 section.services .col-12 .box {
   margin: auto 15px;
+  border: 1px solid --white;
 }
 
 section.services .service-container {
@@ -613,6 +655,16 @@ section.footer .col-12 .terms {
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+section.footer .col-12 .terms > ul {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+section.footer .col-12 .terms > ul > li {
+  width: 130px;
+  text-align: center;
 }
 
 section.footer .col-12 .rights-reserve {

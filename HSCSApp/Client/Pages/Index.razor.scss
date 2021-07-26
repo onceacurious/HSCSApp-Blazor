@@ -138,6 +138,26 @@
         align-items: center;
         justify-content: center;
       }
+
+      #signin-signup[data-descr] {
+        position: relative;
+
+        &:hover::after,
+        &:focus::after {
+          position: absolute;
+          content: attr(data-descr);
+          right: 0;
+          top: 24px;
+          width: max-content;
+          text-align: center;
+          border-radius: 5px;
+          background-color: var(--aqua);
+          padding: 5px;
+          color: var(--white);
+          font-size: 14px;
+          z-index: 1;
+        }
+      }
     }
 
     &-menu {
@@ -156,6 +176,13 @@
 
       .col-2 {
         justify-content: center;
+
+        button {
+          border: none !important;
+          outline: none !important;
+          background-color: transparent !important;
+          cursor: pointer;
+        }
       }
 
       .col-10 {
@@ -164,6 +191,19 @@
 
       img {
         width: 200px;
+      }
+    }
+
+    .toggle-menu {
+      display: block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+
+      a:hover {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--gray);
       }
     }
   }
@@ -315,6 +355,7 @@ section.services {
 
     .box {
       margin: auto 15px;
+      border: 1px solid (--white);
     }
   }
 
@@ -472,7 +513,17 @@ section.footer {
       width: 100%;
       padding-top: 20px;
       padding-bottom: 20px;
+
+      > ul {
+        flex-wrap: wrap;
+
+        > li {
+          width: 130px;
+          text-align: center;
+        }
+      }
     }
+
     .rights-reserve {
       border-top: 1px solid var(--gray-70);
       padding-top: 10px;
