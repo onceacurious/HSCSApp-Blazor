@@ -25,144 +25,6 @@
 
 <title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
 
-<nav>
-    <div id="nav-header" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
-        <!-- Social Media -->
-        <div class="social-media d-flex align-items-center justify-content-center col-4">
-            <span>Follow Us:</span>
-            <ul class="media-list col-7 d-flex align-items-center justify-content-around">
-                <li class="media-list-item">
-                    <a href="" class="fab fa-facebook-square fa-2x"></a>
-                </li>
-                <li class="media-list-item">
-                    <a href="" class="fab fa-instagram-square fa-2x"></a>
-                </li>
-                <li class="media-list-item">
-                    <a href="" class="fab fa-linkedin fa-2x"></a>
-                </li>
-                <li class="media-list-item">
-                    <a href="" class="fab fa-youtube-square fa-2x"></a>
-                </li>
-            </ul>
-        </div>
-        <!-- Company Logo -->
-        <div class="company-logo col-4 d-flex justify-content-center">
-            <img src="images/logo_prototype.svg" alt="Company Logo" />
-        </div>
-        <!-- User Login -->
-        <div class="user col-4 d-flex justify-content-center">
-            <a href="">
-                My Account
-            </a>
-        </div>
-    </div>
-
-    <div class="nav-menu col-md-12 d-flex flex-row align-items-center justify-content-around">
-        <div class="company-brand col-4 d-flex justify-content-center">
-            <a href="" class="brand">
-                <img src="images/brand_prototype.svg" alt="Company Brand Logo">
-            </a>
-        </div>
-        <div class="nav-list-container col-8 d-flex align-items-center justify-content-around">
-            <ul class="nav-list">
-                <li class="nav-list-item">
-                    <a href="">Home</a>
-                </li>
-                <li class="nav-list-item">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Services
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Planning & Design</a>
-                            <a class="dropdown-item" href="#">Construction</a>
-                            <a class="dropdown-item" href="#">Electrical</a>
-                            <a class="dropdown-item" href="#">Electronics</a>
-                            <a class="dropdown-item" href="#">Mechanical</a>
-                            <a class="dropdown-item" href="#">Renovation</a>
-                            <a class="dropdown-item" href="#">Plumbing</a>
-                            <a class="dropdown-item" href="#">Consultation</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-list-item">
-                    <a href="">Portfolio</a>
-                </li>
-                <li class="nav-list-item">
-                    <a href="">Blog</a>
-                </li>
-            </ul>
-            <a href="" class="contact-btn" @onclick="ContactBtn_Clicked">Contact Us</a>
-        </div>
-    </div>
-    <div class="collapse">
-        <div class="collapse-header">
-            <div class="col-4">
-                <a href="">
-                    Subscribe
-                </a>
-            </div>
-            <div class="col-4">
-                <img src="images/logo_prototype.svg" alt="">
-            </div>
-            <div class="col-4">
-                <a id="signin-signup" href="" data-descr="SignIn/SignUp">
-                    <i class="fas fa-user-astronaut fa-lg"></i>
-                </a>
-            </div>
-        </div>
-        <div class="collapse-menu">
-            <div class="col-10">
-                <a href="">
-                    <img src="images/brand.svg" alt="">
-                </a>
-            </div>
-            <div class="col-2">
-                <button class="@hamburger" @onclick="Toggler">
-                    <i class="fas fa-bars fa-lg" style="color: var(--aqua);"></i>
-                </button>
-                <button class="@close" @onclick="Toggler">
-                    <i class="fas fa-times fa-lg" style="color: var(--aqua);"></i>
-                </button>
-            </div>
-        </div>
-        <div class="@toggleMenu">
-            <ul>
-                <li>
-                    <a href="">Home</a>
-                </li>
-                <li>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Services
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Planning & Design</a>
-                            <a class="dropdown-item" href="#">Construction</a>
-                            <a class="dropdown-item" href="#">Electrical</a>
-                            <a class="dropdown-item" href="#">Electronics</a>
-                            <a class="dropdown-item" href="#">Mechanical</a>
-                            <a class="dropdown-item" href="#">Renovation</a>
-                            <a class="dropdown-item" href="#">Plumbing</a>
-                            <a class="dropdown-item" href="#">Consultation</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="">Portfolio</a>
-                </li>
-                <li>
-                    <a href="">Blog</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <div class="@serviceQuote">
     <h4>Service Quotation</h4>
     <EditForm id="quotation" Model="@quote">
@@ -549,7 +411,7 @@
                     <a href="">FAQ</a>
                 </li>
                 <li>
-                    <a href="">Sitemap</a>
+                    <a href="https://goo.gl/maps/Yms9MCX3W8VzX4Zo7" target="_blank">Sitemap</a>
                 </li>
                 <li>
                     <a href="">Credits</a>
@@ -569,54 +431,11 @@
 
 @code {
 
-    private string hamburger;
-    private string close = "hide";
-
-    private string toggleMenu = "hide";
-
-    private string serviceMenu = "hide";
 
     ServiceQuotation quote = new ServiceQuotation();
 
     Service myServices = new Service();
     private string serviceQuote = "hide";
-    private void ContactBtn_Clicked()
-    {
-        js.InvokeVoidAsync("contactBtn_Clicked");
-    }
-
-    private void Toggler()
-    {
-        if (close == "hide")
-        {
-            hamburger = "hide";
-            close = string.Empty;
-            toggleMenu = "toggle-menu";
-        }
-        else
-        {
-            hamburger = string.Empty;
-            close = "hide";
-            toggleMenu = "hide";
-        }
-    }
-
-    private void Service_Clicked()
-    {
-        if (serviceMenu == "hide")
-        {
-            serviceMenu = "service-menu";
-        }
-        else
-        {
-            serviceMenu = "hide";
-        }
-    }
-
-    private void Service_focusOut()
-    {
-        serviceMenu = "hide";
-    }
 
     private void Close_Quote()
     {

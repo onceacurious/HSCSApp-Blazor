@@ -1,1 +1,1 @@
-console.log("JS is active");
+console.log("App.js is active");

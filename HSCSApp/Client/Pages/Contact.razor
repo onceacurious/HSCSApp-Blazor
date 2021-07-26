@@ -1,0 +1,77 @@
+@page "/contact"
+@layout HomePage
+
+
+<section class="contact">
+    <div class="form-container">
+        <form action="">
+            <p>Hopestone Contact Form</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="mrPre" name="namePrefix" class="custom-control-input" value="mr">
+                            <label class="custom-control-label" for="mrPre">Mr</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="mrsPre" name="namePrefix" class="custom-control-input" value="mrs">
+                            <label class="custom-control-label" for="mrsPre">Mrs</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="srPre" name="namePrefix" class="custom-control-input" value="sr">
+                            <label class="custom-control-label" for="srPre">Sr</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="msPre" name="namePrefix" class="custom-control-input" value="ms">
+                            <label class="custom-control-label" for="msPre">Ms</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="clientName">Client Name</label>
+                        <input class="form-control" type="text" name="clientName" id="clientName">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number</label>
+                        <input class="form-control" type="text" name="contactNumber" id="contactNumber">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" name="emailAddress" id="emailAddress" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="details">Brief details of inquiry</label>
+                        <textarea name="details" id="details" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="info-container">
+        <div class="info-header">Company Information</div>
+    </div>
+</section>

@@ -1,0 +1,191 @@
+<nav>
+    <div id="nav-header" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
+        <!-- Social Media -->
+        <div class="social-media d-flex align-items-center justify-content-center col-4">
+            <span>Follow Us:</span>
+            <ul class="media-list col-7 d-flex align-items-center justify-content-around">
+                <li class="media-list-item">
+                    <a href="https://www.facebook.com/hopestoneconstruction" target="_blank"
+                        class="fab fa-facebook-square fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" target="_blank" class="fab fa-instagram-square fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" target="_blank" class="fab fa-linkedin fa-2x"></a>
+                </li>
+                <li class="media-list-item">
+                    <a href="" target="_blank" class="fab fa-youtube-square fa-2x"></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Company Logo -->
+        <div class="company-logo col-4 d-flex justify-content-center">
+            <img src="images/logo_prototype.svg" alt="Company Logo" />
+        </div>
+        <!-- User Login -->
+        <div class="user col-4 d-flex justify-content-center">
+            <a href="">
+                My Account
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-menu col-md-12 d-flex flex-row align-items-center justify-content-around">
+        <div class="company-brand col-4 d-flex justify-content-center">
+            <a href="/" class="brand">
+                <img src="images/brand_prototype.svg" alt="Company Brand Logo">
+            </a>
+        </div>
+        <div class="nav-list-container col-8 d-flex align-items-center justify-content-around">
+            <ul class="nav-list">
+                <li class="nav-list-item">
+                    <a href="/">Home</a>
+                </li>
+                <li class="nav-list-item">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Planning & Design</a>
+                            <a class="dropdown-item" href="#">Construction</a>
+                            <a class="dropdown-item" href="#">Electrical</a>
+                            <a class="dropdown-item" href="#">Electronics</a>
+                            <a class="dropdown-item" href="#">Mechanical</a>
+                            <a class="dropdown-item" href="#">Renovation</a>
+                            <a class="dropdown-item" href="#">Plumbing</a>
+                            <a class="dropdown-item" href="#">Consultation</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-list-item">
+                    <a href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-list-item">
+                    <a href="/blog">Blog</a>
+                </li>
+            </ul>
+            <a href="/contact" class="contact-btn">Contact Us</a>
+        </div>
+    </div>
+    <div class="collapse">
+        <div class="collapse-header">
+            <div class="col-4">
+                <a href="">
+                    Subscribe
+                </a>
+            </div>
+            <div class="col-4">
+                <img src="images/logo_prototype.svg" alt="">
+            </div>
+            <div class="col-4">
+                <a id="signin-signup" href="" data-descr="SignIn/SignUp">
+                    <i class="fas fa-user-astronaut fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        <div class="collapse-menu">
+            <div class="col-10">
+                <a href="">
+                    <img src="images/brand.svg" alt="">
+                </a>
+            </div>
+            <div class="col-2">
+                <button class="@hamburger" @onclick="Toggler">
+                    <i class="fas fa-bars fa-lg" style="color: var(--aqua);"></i>
+                </button>
+                <button class="@close" @onclick="Toggler">
+                    <i class="fas fa-times fa-lg" style="color: var(--aqua);"></i>
+                </button>
+            </div>
+        </div>
+        <div class="@toggleMenu">
+            <ul>
+                <li>
+                    <a href="/" @onclick="ToggleMenu_Clicked">Home</a>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Planning & Design</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Construction</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Electrical</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Electronics</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Mechanical</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Renovation</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Plumbing</a>
+                            <a class="dropdown-item" href="#" @onclick="ToggleMenu_Clicked">Consultation</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="/portfolio" @onclick="ToggleMenu_Clicked">Portfolio</a>
+                </li>
+                <li>
+                    <a href="/blog" @onclick="ToggleMenu_Clicked">Blog</a>
+                </li>
+                <li>
+                    <hr>
+                    <a href="/contact" @onclick="ToggleMenu_Clicked">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@code {
+    private string hamburger;
+    private string close = "hide";
+
+    private string toggleMenu = "hide";
+
+    private string serviceMenu = "hide";
+
+    private void Toggler()
+    {
+        if (close == "hide")
+        {
+            hamburger = "hide";
+            close = string.Empty;
+            toggleMenu = "toggle-menu";
+        }
+        else
+        {
+            hamburger = string.Empty;
+            close = "hide";
+            toggleMenu = "hide";
+        }
+    }
+
+    private void ToggleMenu_Clicked()
+    {
+        toggleMenu = "hide";
+        close = "hide";
+        hamburger = string.Empty;
+    }
+
+    private void Service_Clicked()
+    {
+        if (serviceMenu == "hide")
+        {
+            serviceMenu = "service-menu";
+        }
+        else
+        {
+            serviceMenu = "hide";
+        }
+    }
+
+    private void Service_focusOut()
+    {
+        serviceMenu = "hide";
+    }
+}

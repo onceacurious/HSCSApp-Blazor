@@ -1,0 +1,23 @@
+section.contact {
+  padding-top: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-wrap: wrap;
+
+  .form-container,
+  .info-container {
+    min-width: 45%;
+    min-height: max-content;
+    margin: auto 5px;
+    padding: 10px 15px;
+  }
+
+  .form-container {
+    background-color: var(--gray-70);
+    border: 1px solid var(--gray);
+    box-shadow: 4px 4px 2px var(--black-70);
+  }
+}
