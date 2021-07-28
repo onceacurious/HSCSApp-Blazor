@@ -1,23 +1,42 @@
-section.contact {
+.contact {
   padding-top: 120px;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding-left: 20px;
-  padding-right: 20px;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 
-  .form-container,
-  .info-container {
-    min-width: 45%;
-    min-height: max-content;
-    margin: auto 5px;
-    padding: 10px 15px;
-  }
+.left,
+.right {
+  margin-bottom: 20px;
+}
 
-  .form-container {
+.left {
+  display: flex;
+  justify-content: center;
+
+  form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: var(--gray-70);
-    border: 1px solid var(--gray);
-    box-shadow: 4px 4px 2px var(--black-70);
+
+    .contact-caption,
+    .header {
+      color: var(--aqua);
+    }
+  }
+}
+
+.right {
+  background-color: red;
+}
+
+@media screen and (max-width: 912px) {
+  .left,
+  .right {
+    width: 90%;
   }
 }

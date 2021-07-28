@@ -1,33 +1,52 @@
-section.contact {
+.contact {
   padding-top: 120px;
+  width: 100%;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  padding-left: 20px;
-  padding-right: 20px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-section.contact .form-container,
-section.contact .info-container {
-  min-width: 45%;
-  min-height: -webkit-max-content;
-  min-height: -moz-max-content;
-  min-height: max-content;
-  margin: auto 5px;
-  padding: 10px 15px;
+.left,
+.right {
+  margin-bottom: 20px;
 }
 
-section.contact .form-container {
+.left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.left form {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: var(--gray-70);
-  border: 1px solid var(--gray);
-  -webkit-box-shadow: 4px 4px 2px var(--black-70);
-          box-shadow: 4px 4px 2px var(--black-70);
+}
+
+.left form .contact-caption,
+.left form .header {
+  color: var(--aqua);
+}
+
+.right {
+  background-color: red;
+}
+
+@media screen and (max-width: 912px) {
+  .left,
+  .right {
+    width: 90%;
+  }
 }
 /*# sourceMappingURL=Contact.razor.css.map */

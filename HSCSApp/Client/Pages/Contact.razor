@@ -1,77 +1,142 @@
 @page "/contact"
 @layout HomePage
+@inject IJSRuntime js
 
-
-<section class="contact">
-    <div class="form-container">
+<section class="contact pb-4">
+    <div class="left">
         <form action="">
-            <p>Hopestone Contact Form</p>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="mrPre" name="namePrefix" class="custom-control-input" value="mr">
-                            <label class="custom-control-label" for="mrPre">Mr</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="mrsPre" name="namePrefix" class="custom-control-input" value="mrs">
-                            <label class="custom-control-label" for="mrsPre">Mrs</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="srPre" name="namePrefix" class="custom-control-input" value="sr">
-                            <label class="custom-control-label" for="srPre">Sr</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="msPre" name="namePrefix" class="custom-control-input" value="ms">
-                            <label class="custom-control-label" for="msPre">Ms</label>
-                        </div>
-                    </div>
+            <a class="close-btn">
+                <i class="fas fa-window-close"></i>
+            </a>
+            <h4 class="header">Contact Us</h4>
+            <p class="contact-caption">We'd like to hear from you!</p>
+            <!--Row 1-->
+            <div class="input-group">
+                <div class="input-container _medium">
+                    <input type="text" name="name" id="name" required>
+                    <label for="name">Full Name</label>
+                    <small class="@nameSml">Name is to short</small>
+                </div>
+                <div class="input-container _medium">
+                    <input type="text" name="contactNumber" id="contactNumber" required>
+                    <label for="contactNumber">Contact Number</label>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="clientName">Client Name</label>
-                        <input class="form-control" type="text" name="clientName" id="clientName">
-                    </div>
+            <!--Row 2-->
+            <div class="input-group">
+                <div class="input-container _medium">
+                    <input class="@emailInput" type="email" name="email" id="email" @bind="emailValue"
+                        @onfocusout="Email_Invalid" required>
+                    <label class="@emailLbl" for="email">Email Address</label>
+                    <small class="@emailSml">Invalid email address</small>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="contactNumber">Contact Number</label>
-                        <input class="form-control" type="text" name="contactNumber" id="contactNumber">
-                    </div>
+
+                <!--PLEASE STUDY DICTIONARY-->
+                <div class="input-container _medium">
+                    <select name="service" id="service" required>
+                        <option value="" hidden></option>
+                        <option value="1">Planning & Design</option>
+                        <option value="2">Construction</option>
+                        <option value="3">Renovation</option>
+                        <option value="4">Electrical</option>
+                        <option value="5">Electronics</option>
+                        <option value="6">Mechanical</option>
+                        <option value="7">Plumbing</option>
+                        <option value="8">Consultation</option>
+                    </select>
+                    <label for="service">Service</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-container _large">
+                    <textarea name="textarea" id="textarea" required></textarea>
+                    <label for="textarea">Message</label>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="emailAddress">Email Address</label>
-                        <input type="email" name="emailAddress" id="emailAddress" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="details">Brief details of inquiry</label>
-                        <textarea name="details" id="details" class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                    <button type="submit" class="btn btn-danger">Cancel</button>
-                </div>
+            <div class="input-group" style="justify-content: flex-end;">
+                @if (emailValid)
+                {
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-outline-secondary" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                }
             </div>
         </form>
     </div>
+    <div class="right">
 
-    <div class="info-container">
-        <div class="info-header">Company Information</div>
     </div>
 </section>
+
+
+@code {
+
+    private string emailValue;
+
+    private string emailLbl = string.Empty;
+
+    private string emailInput = string.Empty;
+
+    private string nameSml = string.Empty;
+
+    private string emailSml = string.Empty;
+
+    private bool emailValid = true;
+
+    private void Email_Invalid()
+    {
+        
+            var _emailValue = emailValue;
+
+        if (!string.IsNullOrWhiteSpace(_emailValue))
+        {
+            _emailValue.Trim();
+
+            if ((_emailValue.Contains(' ')) ||
+            (_emailValue.EndsWith("@.com")) ||
+            !(_emailValue.Contains('@')) ||
+            !(_emailValue.EndsWith(".com")))
+            {
+                System.Console.WriteLine("inval");
+                emailLbl = "_invalid";
+                emailInput = "_invalid-input";
+                emailSml = "small-show";
+
+                emailValid = false;
+
+            }
+            else
+            {
+
+                System.Console.WriteLine("val");
+                emailLbl = "_invalid";
+                emailInput = "_valid-input";
+                emailSml = "_valid-small";
+                emailValid = true;
+            }
+        }
+        else if (string.IsNullOrEmpty(emailValue))
+        {
+            //If empty or whitespace
+            if(emailValid)
+            System.Console.WriteLine("End If");
+            emailInput = "_valid-input";
+            emailSml = "_valid-small";
+            emailLbl = "_valid-label";
+            
+            emailValid = true;
+
+        }
+
+    }
+
+
+}

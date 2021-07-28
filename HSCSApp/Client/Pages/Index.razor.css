@@ -211,10 +211,12 @@ section.services .item-header {
 section.services img {
   height: 200px;
   width: 250px;
+  z-index: 3;
 }
 
 section.services .img-container {
   position: relative;
+  z-index: 1;
 }
 
 section.services .img-overlay {
@@ -237,6 +239,7 @@ section.services .img-overlay {
   transition: -webkit-animation 250ms ease;
   transition: animation 250ms ease;
   transition: animation 250ms ease, -webkit-animation 250ms ease;
+  z-index: 5;
 }
 
 section.services .img-overlay .btn {
@@ -253,9 +256,20 @@ section.services .img-overlay .btn:hover {
           box-shadow: 0px 0px 6px var(--white);
 }
 
+section.services .img-container:hover {
+  overflow: hidden;
+}
+
 section.services .img-container:hover .img-overlay {
   -webkit-animation: fade 5s ease;
           animation: fade 5s ease;
+}
+
+section.services .img-container:hover img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 section.footer {
