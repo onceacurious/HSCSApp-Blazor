@@ -1,7 +1,14 @@
+@inject IJSRuntime js
+
+<style>
+    .color{
+        background-color: black !important;
+    }
+</style>
 <nav>
-    <div id="nav-header" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
+    <div id="nav-header" style="background-color: @changeColor" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
         <!-- Social Media -->
-        <div class="social-media d-flex align-items-center justify-content-center col-4">
+        <div @ref="elementReference" class="social-media d-flex align-items-center justify-content-center col-4">
             <span>Follow Us:</span>
             <ul class="media-list col-7 d-flex align-items-center justify-content-around">
                 <li class="media-list-item">
@@ -142,6 +149,10 @@
 </nav>
 
 @code {
+    public ElementReference elementReference;
+    
+    private string changeColor = string.Empty;
+
     private string hamburger;
     private string close = "hide";
 
@@ -189,4 +200,8 @@
         serviceMenu = "hide";
     }
 
+    private void Change_Color()
+    {
+        changeColor = "color;";
+    }
 }

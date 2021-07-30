@@ -123,6 +123,7 @@ section.services {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 7rem;
 
   z-index: 1;
 
@@ -203,12 +204,13 @@ section.services {
     overflow: hidden;
 
     .img-overlay {
-      animation: fade 5s ease;
+      animation: fade 5s ease forwards;
     }
 
     img {
       object-fit: fill;
       transform: scale(1.1);
+      transition: transform 350ms ease;
     }
   }
 

@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime js
 
 <style>
     .home-body {
@@ -7,34 +8,21 @@
     }
 </style>
 
-<div class="home-body" @onscroll="Scrolled">
+<div class="home-body">
     <HomeNavigation />
     @Body
 </div>
 
 
 @code {
-    private string mousePointerMessage;
-    private void Scrolled()
-    {
-        System.Console.WriteLine("scrolled");
-
-    }
-    private void Wheel_Scrolled(MouseEventArgs e)
-    {
-        System.Console.WriteLine("scrolled");
-        mousePointerMessage = $"Mouse coordinates: {e.ScreenX}:{e.ScreenY}";
-        System.Console.WriteLine(mousePointerMessage);
-
-    }
 
     private string message;
 
     protected override void OnInitialized()
     {
+        @* js.InvokeVoidAsync("myObserver"); *@
         message = $"Initialized at {DateTime.Now}";
         System.Console.WriteLine(message);
     }
-
 
 }

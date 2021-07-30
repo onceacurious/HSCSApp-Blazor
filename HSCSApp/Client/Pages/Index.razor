@@ -1,6 +1,7 @@
 ﻿@page "/"
 @layout HomePage
 @inject IJSRuntime js
+@inject IntersectionObserver observer
 
 <!--
     Notes:
@@ -90,6 +91,7 @@
 
     </EditForm>
 </div>
+
 <section class="hero">
     <div class="container-fluid">
         <div class="row d-flex">
@@ -115,7 +117,7 @@
                 </div>
 
                 <!-- Feature -->
-                <div id="feature" class="col-6">
+                <div id="feature" class="col-md-6">
                     <!-- Top Row-->
                     <div id="topRow" class="row">
                         <div class="col-12">
@@ -181,7 +183,7 @@
     </div>
 </section>
 
-<section class="services pt-5">
+<section class="services">
     <div class="services-container">
         <div class="col-12">
 
@@ -388,7 +390,7 @@
                 <label for="newsLetter">Subscribe to our monthly news letter</label>
                 <form action="">
                     <input type="email" name="" id="newsLetter">
-                    <button type="submit">
+                    <button type="button">
                         <i class="far fa-paper-plane"></i>
                     </button>
                 </form>
@@ -426,15 +428,12 @@
     </div>
 </section>
 
-
-
-
 @code {
-
 
     ServiceQuotation quote = new ServiceQuotation();
 
     Service myServices = new Service();
+
     private string serviceQuote = "hide";
 
     private void Close_Quote()
@@ -445,6 +444,11 @@
     private void Open_Quote()
     {
         serviceQuote = "service-quote-popover";
+    }
+
+    private void Change_Color()
+    {
+
     }
 
 }

@@ -184,4 +184,71 @@ form .input-group ._large {
     width: 100% !important;
   }
 }
+
+._modal {
+  visibility: hidden;
+  position: fixed;
+  overflow: hidden !important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black-70);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 999;
+}
+
+._modal-content {
+  width: 40% !important;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  background-color: gainsboro;
+  border-radius: 20px;
+  padding: 10px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+._modal-header, ._modal-body, ._modal-footer, ._modal-slogan, ._modal-title {
+  width: 100%;
+}
+
+._modal-body {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: auto 20px;
+  margin-bottom: 0.25rem;
+}
+
+._modal-body p {
+  margin: auto 5px;
+}
+
+._modal-footer {
+  text-align: right;
+}
+
+._modal .close {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
 /*# sourceMappingURL=custom.css.map */

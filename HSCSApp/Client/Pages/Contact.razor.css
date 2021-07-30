@@ -12,6 +12,11 @@
           justify-content: space-evenly;
 }
 
+#exampleModal {
+  position: absolute !important;
+  z-index: 999;
+}
+
 .left,
 .right {
   margin-bottom: 20px;
@@ -48,5 +53,30 @@
   .right {
     width: 90%;
   }
+}
+
+._modal {
+  color: var(--aqua);
+}
+
+._modal-header {
+  font-weight: bold;
+  font-size: 0.8;
+}
+
+._modal-body {
+  font-size: 14px;
+}
+
+._modal-slogan {
+  color: black;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.show {
+  visibility: visible;
+  -webkit-animation: fade 5s ease forwards;
+          animation: fade 5s ease forwards;
 }
 /*# sourceMappingURL=Contact.razor.css.map */

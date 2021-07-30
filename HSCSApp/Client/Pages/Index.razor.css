@@ -160,6 +160,7 @@ section.services {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-top: 7rem;
   z-index: 1;
 }
 
@@ -261,8 +262,8 @@ section.services .img-container:hover {
 }
 
 section.services .img-container:hover .img-overlay {
-  -webkit-animation: fade 5s ease;
-          animation: fade 5s ease;
+  -webkit-animation: fade 5s ease forwards;
+          animation: fade 5s ease forwards;
 }
 
 section.services .img-container:hover img {
@@ -270,6 +271,10 @@ section.services .img-container:hover img {
      object-fit: fill;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+  -webkit-transition: -webkit-transform 350ms ease;
+  transition: -webkit-transform 350ms ease;
+  transition: transform 350ms ease;
+  transition: transform 350ms ease, -webkit-transform 350ms ease;
 }
 
 section.footer {
