@@ -1,35 +1,14 @@
 console.log("App.js is active");
 
-const btn = document.querySelector(".contact-btn");
+function NavHeader() {
+  const navHead = document.querySelector("#nav-header");
+  const collHeader = document.querySelector(".collapse-header");
 
-function msg() {
-  alert("Close btn clicked");
+  if (navHead.classList.contains("hide")) {
+    navHead.classList.remove("hide");
+    collHeader.classList.remove("hide");
+  } else {
+    navHead.classList.add("hide");
+    collHeader.classList.add("hide");
+  }
 }
-
-//Intersection Observer
-
-function myObserver() {
-  const sm = document.querySelector(".social-media");
-  const footer = document.querySelector(".footer");
-
-  const options = {
-    rootMargin: "-20px 0px 0px 0px",
-  };
-  const observer = new IntersectionObserver(function (entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log(entry);
-        sm.style.backgroundColor = "black";
-      }
-
-      // console.log(entry);
-    });
-  }, options);
-
-  observer.observe(footer);
-  console.log("My observer");
-}
-
-function NavChange() {}
-
-// function myObserver(entries, observer) {}

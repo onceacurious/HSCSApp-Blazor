@@ -52,7 +52,7 @@
             </div>
             <div class="input-group">
                 <div class="input-container _large">
-                    <textarea name="textarea" id="textarea" required @bind="MessageValue" @onfocusout="Msg_Invalid"></textarea>
+                    <textarea name="textarea" id="textarea" required @bind="MessageValue" @onfocusout="Msg_Invalid" spellcheck="true"></textarea>
                     <label for="textarea">Message</label>
                     <small class="@messageSml">Required field</small>
                 </div>

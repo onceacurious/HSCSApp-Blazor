@@ -1,7 +1,8 @@
 ﻿@page "/"
 @layout HomePage
 @inject IJSRuntime js
-@inject IntersectionObserver observer
+@inject IIntersectionObserverService observer
+@implements IAsyncDisposable
 
 <!--
     Notes:
@@ -335,7 +336,7 @@
     This two additional section will display plus button if nothing to display using if condition
     -->
 
-<section class="footer">
+<section @ref="footerObserver" class="footer">
     <div class="col-12">
 
         <div class="box">
@@ -429,8 +430,12 @@
 </section>
 
 @code {
-
     ServiceQuotation quote = new ServiceQuotation();
+
+    public ElementReference footerObserver { get; set; }
+    public bool IsIntersecting { get; set; }
+
+    private IntersectionObserver Observer;
 
     Service myServices = new Service();
 
@@ -446,9 +451,40 @@
         serviceQuote = "service-quote-popover";
     }
 
-    private void Change_Color()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await SetupObserver();
+        }
+    }
+
+    public async Task SetupObserver()
     {
 
+        await observer.Observe(footerObserver, (entries) =>
+        {
+            var entry = entries.FirstOrDefault();
+            IsIntersecting = entry.IsIntersecting;
+            StateHasChanged();
+            @* Console.WriteLine(IsIntersecting); *@
+
+            if (entry.IsIntersecting)
+            {
+                js.InvokeVoidAsync("NavHeader");
+            }
+            else
+            {
+                js.InvokeVoidAsync("NavHeader");
+            }
+        });
+    }
+    public async ValueTask DisposeAsync()
+    {
+        if (this.Observer != null)
+        {
+            await this.Observer.Dispose();
+        }
     }
 
 }

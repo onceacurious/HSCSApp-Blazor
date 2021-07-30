@@ -1,14 +1,14 @@
 @inject IJSRuntime js
 
 <style>
-    .color{
+    .color {
         background-color: black !important;
     }
 </style>
 <nav>
-    <div id="nav-header" style="background-color: @changeColor" class="nav-header col-lg-12 d-flex align-items-center justify-content-center">
+    <div id="nav-header" class="nav-header col-lg-12s align-items-center justify-content-center">
         <!-- Social Media -->
-        <div @ref="elementReference" class="social-media d-flex align-items-center justify-content-center col-4">
+        <div class="social-media d-flex align-items-center justify-content-center col-4">
             <span>Follow Us:</span>
             <ul class="media-list col-7 d-flex align-items-center justify-content-around">
                 <li class="media-list-item">
@@ -32,7 +32,7 @@
         </div>
         <!-- User Login -->
         <div class="user col-4 d-flex justify-content-center">
-            <a href="">
+            <a href="" @onclick="test_value">
                 My Account
             </a>
         </div>
@@ -149,9 +149,6 @@
 </nav>
 
 @code {
-    public ElementReference elementReference;
-    
-    private string changeColor = string.Empty;
 
     private string hamburger;
     private string close = "hide";
@@ -200,8 +197,11 @@
         serviceMenu = "hide";
     }
 
-    private void Change_Color()
+
+    //test
+
+    private void test_value()
     {
-        changeColor = "color;";
+
     }
 }
