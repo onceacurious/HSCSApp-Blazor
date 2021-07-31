@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HSCSApp.Shared
 {
@@ -17,7 +16,5 @@ namespace HSCSApp.Shared
         public DateTime DateInquired { get; set; } = DateTime.UtcNow;
         public DateTime DateOpened { get; set; }
         public DateTime DateAccommodated { get; set; }
-
-
     }
 }

@@ -1,4 +1,5 @@
 @page "/contact"
+@using System.Text.RegularExpressions
 @layout HomePage
 @inject IJSRuntime js
 
@@ -13,14 +14,16 @@
             <!--Row 1-->
             <div class="input-group">
                 <div class="input-container _medium">
-                    <input type="text" name="name" id="name" @bind="NameValue" @onfocusout="Name_Invalid" required>
+                    <input class="@nameInput" type="text" name="name" id="name" @bind="NameValue"
+                           @onfocusout="Name_Invalid" required>
                     <label for="name">Full Name</label>
-                    <small class="@nameSml">Name is to short</small>
+                    <small class="@nameSml">@smallNameValue</small>
                 </div>
                 <div class="input-container _medium">
-                    <input type="text" name="contactNumber" id="contactNumber" @bind="ContactValue" required @onfocusout="Contact_Invalid">
+                    <input class="@contactInput" type="text" name="contactNumber" id="contactNumber"
+                           @bind="ContactValue" required @onfocusout="Contact_Invalid">
                     <label for="contactNumber">Contact Number</label>
-                    <small class="@contactSml">Invalid contact number</small>
+                    <small class="@contactSml">@smallContactValue</small>
                 </div>
             </div>
 
@@ -28,9 +31,9 @@
             <div class="input-group">
                 <div class="input-container _medium">
                     <input class="@emailInput" type="email" name="email" id="email" @bind="EmailValue"
-                        @onfocusout="Email_Invalid" required>
+                           @onfocusout="Email_Invalid" required>
                     <label class="@emailLbl" for="email">Email Address</label>
-                    <small class="@emailSml">Invalid email address</small>
+                    <small class="@emailSml">@smallServiceValue</small>
                 </div>
 
                 <!--PLEASE STUDY DICTIONARY-->
@@ -52,16 +55,17 @@
             </div>
             <div class="input-group">
                 <div class="input-container _large">
-                    <textarea name="textarea" id="textarea" required @bind="MessageValue" @onfocusout="Msg_Invalid" spellcheck="true"></textarea>
+                    <textarea class="messageInput" name="textarea" id="textarea" required @bind="MessageValue"
+                              @onfocusout="Msg_Invalid" spellcheck="true"></textarea>
                     <label for="textarea">Message</label>
-                    <small class="@messageSml">Required field</small>
+                    <small class="@messageSml">@smallMsgValue</small>
                 </div>
             </div>
 
             <div class="input-group" style="justify-content: flex-end;">
                 @if (formValid)
                 {
-                    <button class="btn btn-outline-primary" type="button" @onclick="Contact_Us">
+                    <button class="btn btn-outline-primary" type="button" @onclick="ContactUs_Btn">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 }
@@ -75,36 +79,34 @@
         </form>
     </div>
     <div class="right">
-
     </div>
 
     <div class="@modal">
-            <div class="_modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close_Modal">
-                    <span aria-hidden="true">&times;</span>
-                 </button>
-                <div class="_modal-header">
-                    <h4 class="_modal-title">
-                        Contact Us
-                    </h4>
-                </div>
-                <div class="_modal-body">
-                    <p>
-                        Are you sure you want to cancel?
-                        <br>
-                        You will be redirected to Home Page.
-                    </p>
-                </div>
-                <div class="_modal-footer">
-                    <button class="btn btn-danger" type="button" @onclick="Clear_FormValue">Ok</button>
-                </div>
-                    <p class="_modal-slogan">
-                        Hopestone Construction Service
-                    </p>
+        <div class="_modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close_Modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="_modal-header">
+                <h4 class="_modal-title">
+                    Contact Us
+                </h4>
             </div>
+            <div class="_modal-body">
+                <p>
+                    Are you sure you want to cancel?
+                    <br>
+                    You will be redirected to Home Page.
+                </p>
+            </div>
+            <div class="_modal-footer">
+                <button class="btn btn-danger" type="button" @onclick="Clear_FormValue">Ok</button>
+            </div>
+            <p class="_modal-slogan">
+                Hopestone Construction Service
+            </p>
+        </div>
     </div>
 </section>
-
 
 @code {
 
@@ -116,9 +118,9 @@
 
     //Label
     private string nameLbl = string.Empty;
-     private string contactLbl = string.Empty;
+    private string contactLbl = string.Empty;
     private string emailLbl = string.Empty;
-     private string serviceLbl = string.Empty;
+    private string serviceLbl = string.Empty;
     private string messageLbl = string.Empty;
 
     //Input
@@ -134,18 +136,27 @@
     private string emailSml = string.Empty;
     private string serviceSml = string.Empty;
     private string messageSml = string.Empty;
-    
+
+    //Small Alert Value
+    private string smallNameValue = string.Empty;
+    private string smallContactValue = string.Empty;
+    private string smallEmailValue = string.Empty;
+    private string smallServiceValue = string.Empty;
+    private string smallMsgValue = string.Empty;
 
     //Valid Status
-    private bool formValid;
-    
+    private bool nameValid;
+    private bool contactValid;
+    private bool emailValid;
+    private bool msgValid;
+    private bool formValid = false;
 
     //Modal
     private string modal = "_modal";
 
     private void Email_Invalid()
     {
-        
+
         var _emailValue = EmailValue;
 
         if (!string.IsNullOrWhiteSpace(_emailValue))
@@ -161,26 +172,24 @@
                 emailInput = "_invalid-input";
                 emailSml = "small-show";
 
-                formValid = false;
+                emailValid = false;
             }
             else
             {
                 emailLbl = "_invalid";
                 emailInput = "_valid-input";
                 emailSml = "_valid-small";
-                formValid = true;
+                emailValid = true;
             }
         }
         else if (string.IsNullOrEmpty(_emailValue))
         {
             //If empty or whitespace
-
-            System.Console.WriteLine("End If");
             emailInput = "_valid-input";
             emailSml = "_valid-small";
             emailLbl = "_valid-label";
 
-            formValid = true;
+            emailValid = true;
 
         }
 
@@ -188,28 +197,71 @@
 
     private void Name_Invalid()
     {
-
         var _nameValue = NameValue;
 
         if (!string.IsNullOrWhiteSpace(_nameValue))
         {
-            _nameValue.Trim();
+            string _trimmedName = _nameValue.Trim();
 
-            if (_nameValue.Length > 2)
+            string[] _arrayName = _trimmedName.Split(" ");
+
+            //for (int i = 0; i < _arrayName.Length; i++)
+            //{
+            //  Console.WriteLine(_arrayName[].ToString());
+            //}
+
+            foreach (var array in _arrayName)
             {
-                
+                foreach (var i in array)
+                {
+                    Console.WriteLine(i);
+
+                }
+                //var _array = array[0].ToString().Replace("f", "F");
+                //Console.WriteLine(_array);
+
+            }
+
+            //foreach (var i in _arrayName)
+            //{
+            //    var upperChar = i[0].ToString();
+            //    Console.WriteLine(upperChar.ToUpper());
+
+            //}
+
+            if (_nameValue.Length <= 3)
+            {
+                smallNameValue = "Name too short";
                 nameLbl = "_invalid";
                 nameInput = "_invalid-input";
                 nameSml = "small-show";
 
-                formValid = false;
+                nameValid = false;
             }
             else
             {
-                nameLbl = "_invalid";
-                nameInput = "_valid-input";
-                nameSml = "_valid-small";
-                formValid = true;
+                Regex rgx = new Regex(@"^[ A-Za-z0-9]$");
+                @* bool containsSpecialChar = _trimmedName.Any(char.IsSymbol); *@
+                bool containsSpecialChar = rgx.IsMatch(_trimmedName);
+                bool containsNumber = _trimmedName.Any(char.IsDigit);
+                if (containsSpecialChar || containsNumber)
+                {
+                    smallNameValue = "Invalid (No number & character)";
+                    nameLbl = "_invalid";
+                    nameInput = "_invalid-input";
+                    nameSml = "small-show";
+
+                    nameValid = false;
+                }
+                else
+                {
+                    nameLbl = "_invalid";
+                    nameInput = "_valid-input";
+                    nameSml = "_valid-small";
+                    nameValid = true;
+
+                    NameValue = _trimmedName;
+                }
             }
         }
         else if (string.IsNullOrEmpty(_nameValue))
@@ -220,11 +272,12 @@
             nameSml = "_valid-small";
             nameLbl = "_valid-label";
 
-            formValid = true;
+            nameValid = true;
 
         }
 
     }
+
     private void Contact_Invalid()
     {
 
@@ -232,25 +285,37 @@
 
         if (!string.IsNullOrWhiteSpace(_contactValue))
         {
-            _contactValue.Trim();
+            var _trimmedContact = _contactValue.Trim();
 
-            if ((_contactValue.Contains(' ')) ||
-            (_contactValue.EndsWith("@.com")) ||
-            !(_contactValue.Contains('@')) ||
-            !(_contactValue.EndsWith(".com")))
+            if (_trimmedContact.Length >= 7)
             {
+                bool containsNumber = _trimmedContact.All(char.IsDigit);
+
+                if (containsNumber)
+                {
+                    contactInput = "_valid-input";
+                    contactSml = "_valid-small";
+                    contactLbl = "_valid-label";
+                    contactValid = true;
+                }
+                else
+                {
+                    smallContactValue = "Invalid contact number";
+                    contactLbl = "_invalid";
+                    contactInput = "_invalid-input";
+                    contactSml = "small-show";
+
+                    contactValid = false;
+                }
+            }
+            else
+            {
+                smallContactValue = "Invalid contact number";
                 contactLbl = "_invalid";
                 contactInput = "_invalid-input";
                 contactSml = "small-show";
 
-                formValid = false;
-            }
-            else
-            {
-                contactLbl = "_invalid";
-                contactInput = "_valid-input";
-                contactSml = "_valid-small";
-                formValid = true;
+                contactValid = false;
             }
         }
         else if (string.IsNullOrEmpty(_contactValue))
@@ -261,7 +326,7 @@
             contactSml = "_valid-small";
             contactLbl = "_valid-label";
 
-            formValid = true;
+            contactValid = true;
 
         }
 
@@ -273,26 +338,9 @@
 
         if (!string.IsNullOrWhiteSpace(_serviceValue))
         {
-            _serviceValue.Trim();
-
-            if ((_serviceValue.Contains(' ')) ||
-            (_serviceValue.EndsWith("@.com")) ||
-            !(_serviceValue.Contains('@')) ||
-            !(_serviceValue.EndsWith(".com")))
-            {
-                serviceLbl = "_invalid";
-                serviceInput = "_invalid-input";
-                serviceSml = "small-show";
-
-                formValid = false;
-            }
-            else
-            {
-                serviceLbl = "_invalid";
-                serviceInput = "_valid-input";
-                serviceSml = "_valid-small";
-                formValid = true;
-            }
+            serviceInput = "_valid-input";
+            serviceSml = "_valid-small";
+            serviceLbl = "_valid-label";
         }
         else if (string.IsNullOrEmpty(_serviceValue))
         {
@@ -301,9 +349,6 @@
             serviceInput = "_valid-input";
             serviceSml = "_valid-small";
             serviceLbl = "_valid-label";
-
-            formValid = true;
-
         }
 
     }
@@ -314,25 +359,23 @@
 
         if (!string.IsNullOrWhiteSpace(_messageValue))
         {
-            _messageValue.Trim();
+            string _trimmedMsg = _messageValue.Trim();
 
-            if ((_messageValue.Contains(' ')) ||
-            (_messageValue.EndsWith("@.com")) ||
-            !(_messageValue.Contains('@')) ||
-            !(_messageValue.EndsWith(".com")))
+            if (_trimmedMsg.Length < 10)
             {
+                smallMsgValue = "Message too short.";
                 messageLbl = "_invalid";
                 messageInput = "_invalid-input";
                 messageSml = "small-show";
 
-                formValid = false;
+                msgValid = false;
             }
             else
             {
                 messageLbl = "_invalid";
                 messageInput = "_valid-input";
                 messageSml = "_valid-small";
-                formValid = true;
+                msgValid = true;
             }
         }
         else if (string.IsNullOrEmpty(_messageValue))
@@ -343,34 +386,53 @@
             messageSml = "_valid-small";
             messageLbl = "_valid-label";
 
-            formValid = true;
+            msgValid = true;
 
         }
 
     }
 
-
-    private void Contact_Us()
+    private bool Form_Valid()
     {
-        System.Console.WriteLine("Tae");
-        System.Console.WriteLine($"Name: {NameValue} Contact Number: {ContactValue}/nEmail Address: {EmailValue} Service: {ServiceValue}/nMessage: {MessageValue}");
+        if ((!nameValid) ||
+        (!contactValid) ||
+        (!emailValid) ||
+        (!msgValid)
+        )
+        {
+            return formValid = false;
+        }
+        else
+        {
+            return formValid = true;
+        }
     }
 
+    private void ContactUs_Btn()
+    {
+        if (Form_Valid())
+        {
+            System.Console.WriteLine("valid");
+        }
+        else
+        {
+            System.Console.WriteLine("Invalid");
+        }
+    }
     private void Clear_Form()
     {
-        if(
-            !(string.IsNullOrEmpty(NameValue)) ||
-            !(string.IsNullOrEmpty(ContactValue)) ||
-            !(string.IsNullOrEmpty(EmailValue)) ||
-            !(string.IsNullOrEmpty(ServiceValue)) ||
-            !(string.IsNullOrEmpty(MessageValue))
+        if (
+        !(string.IsNullOrEmpty(NameValue)) ||
+        !(string.IsNullOrEmpty(ContactValue)) ||
+        !(string.IsNullOrEmpty(EmailValue)) ||
+        !(string.IsNullOrEmpty(ServiceValue)) ||
+        !(string.IsNullOrEmpty(MessageValue))
         )
         {
             modal = "_modal show";
         }
-        
-    }
 
+    }
 
     private void Clear_FormValue()
     {
@@ -386,5 +448,10 @@
     private void Close_Modal()
     {
         modal = "_modal";
+    }
+
+    private void StringToProper(params string[] name)
+    {
+
     }
 }

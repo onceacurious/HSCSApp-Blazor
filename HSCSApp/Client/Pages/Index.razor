@@ -2,7 +2,7 @@
 @layout HomePage
 @inject IJSRuntime js
 @inject IIntersectionObserverService observer
-@implements IAsyncDisposable
+@* @implements IAsyncDisposable *@
 
 <!--
     Notes:
@@ -20,7 +20,6 @@
         padding: 20px 10px 10px 10px;
         border-radius: 10px;
         border: 1px solid var(--gray);
-
         z-index: 1;
     }
 </style>
@@ -57,7 +56,7 @@
             </div>
             <div class="col-md-6">
                 <!--
-                            Upon selection one of the option, it will incur an error 
+                            Upon selection one of the option, it will incur an error
                             since the back end wasn't yet implemented
                             -->
                 <div class="form-group">
@@ -89,7 +88,6 @@
                 <button class="btn btn-danger" type="button" @onclick="Close_Quote">Cancel</button>
             </div>
         </div>
-
     </EditForm>
 </div>
 
@@ -106,7 +104,8 @@
                             <p class="card-text">
                                 We are a Registered Construction Firm offering Planning & Design,
                                 Building Construction, Renovation, Mechanical, Electronics, Electrical, Plumbing, and
-                                other construction services. You name it, we build it</p>
+                                other construction services. You name it, we build it
+                            </p>
                             <br>
                             <p class="card-text">
                                 We aim to provide outstanding Customer Service and distinctive interior/exterior
@@ -193,8 +192,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/planning.jpg" alt="">
                         </div>
@@ -210,8 +211,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/construction.jpg" alt="">
                         </div>
@@ -227,8 +230,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/renovation.jpg" alt="">
                         </div>
@@ -244,8 +249,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/mechanical.jpg" alt="">
                         </div>
@@ -264,8 +271,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/electrical.jpg" alt="">
                         </div>
@@ -281,8 +290,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/electronics.jpg" alt="">
                         </div>
@@ -298,8 +309,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/plumbing.jpg" alt="">
                         </div>
@@ -315,8 +328,10 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote"><i class="fas fa-edit"></i>
-                                    Get a quote</a>
+                                <a class="btn" @onclick="Open_Quote">
+                                    <i class="fas fa-edit"></i>
+                                    Get a quote
+                                </a>
                             </div>
                             <img loading="lazy" src="images/consultation.jpg" alt="">
                         </div>
@@ -331,7 +346,7 @@
     </div>
 </section>
 
-<!-- 
+<!--
     Blog & Portfolio
     This two additional section will display plus button if nothing to display using if condition
     -->
@@ -461,21 +476,24 @@
 
     public async Task SetupObserver()
     {
+        var options = new IntersectionObserverOptions
+        {
+            RootMargin = "10px 0px 0px 0px"
+        };
 
         await observer.Observe(footerObserver, (entries) =>
         {
             var entry = entries.FirstOrDefault();
             IsIntersecting = entry.IsIntersecting;
             StateHasChanged();
-            @* Console.WriteLine(IsIntersecting); *@
 
             if (entry.IsIntersecting)
             {
-                js.InvokeVoidAsync("NavHeader");
+                js.InvokeVoidAsync("ShowHeader");
             }
             else
             {
-                js.InvokeVoidAsync("NavHeader");
+                js.InvokeVoidAsync("HideHeader");
             }
         });
     }

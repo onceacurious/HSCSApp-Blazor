@@ -24,13 +24,11 @@ nav a:visited {
 }
 
 nav .nav-header {
+  display: none;
   width: 100%;
   background-color: var(--white);
   font-weight: bold;
   color: var(--aqua);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 nav .nav-header a {
@@ -158,7 +156,7 @@ nav .collapse a:hover {
 }
 
 nav .collapse-header {
-  display: inherit;
+  display: none;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -269,7 +267,13 @@ nav .collapse .toggle-menu a:hover {
 }
 
 nav .hide {
-  display: none;
+  display: none !important;
+}
+
+nav .show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   -webkit-animation: fade 600ms ease forwards;
           animation: fade 600ms ease forwards;
   -webkit-transition: -webkit-animation 600ms ease;

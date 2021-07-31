@@ -1,70 +1,77 @@
 .contact {
-  padding-top: 120px;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+    padding-top: 60px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #exampleModal {
-  position: absolute !important;
-  z-index: 999;
+    position: absolute !important;
+    z-index: 999;
 }
 
 .left,
 .right {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    width: 50%;
 }
 
 .left {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 
-  form {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: var(--gray-70);
+    form {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: var(--gray-70);
 
-    .contact-caption,
-    .header {
-      color: var(--aqua);
+        .contact-caption,
+        .header {
+            color: var(--aqua);
+        }
     }
-  }
 }
 
 .right {
-  background-color: red;
+    background-color: red;
+    min-height: 450px;
 }
 
 @media screen and (max-width: 912px) {
-  .left,
-  .right {
-    width: 90%;
-  }
+    .left,
+    .right {
+        width: 90%;
+    }
+
+    .left {
+        padding-top: 50px !important;
+    }
 }
 
 ._modal {
-  color: var(--aqua);
+    color: var(--aqua);
 
-  &-header {
-    font-weight: bold;
-    font-size: 0.8;
-  }
+    &-header {
+        font-weight: bold;
+        font-size: 80%;
+    }
 
-  &-body {
-    font-size: 14px;
-  }
-  &-slogan {
-    color: black;
-    text-transform: uppercase;
-    font-size: 10px;
-  }
+    &-body {
+        font-size: 14px;
+    }
+
+    &-slogan {
+        color: black;
+        text-transform: uppercase;
+        font-size: 10px;
+    }
 }
 
 .show {
-  visibility: visible;
-  animation: fade 5s ease forwards;
+    visibility: visible;
+    animation: fade 5s ease forwards;
 }
