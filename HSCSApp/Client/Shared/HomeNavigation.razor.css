@@ -270,7 +270,7 @@ nav .hide {
   display: none !important;
 }
 
-nav .show {
+nav .nav-show {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;

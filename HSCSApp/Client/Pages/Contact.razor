@@ -2,11 +2,14 @@
 @using System.Text.RegularExpressions
 @layout HomePage
 @inject IJSRuntime js
+@inject NavigationManager nm
 
-<section class="contact pb-4">
+<section class="contact">
+
+    <!--Contact Form-->
     <div class="left">
         <form action="">
-            <a class="close-btn" onclick="msg()">
+            <a class="close-btn" @onclick="Show_Modal">
                 <i class="fas fa-window-close"></i>
             </a>
             <h4 class="header">Contact Us</h4>
@@ -14,7 +17,7 @@
             <!--Row 1-->
             <div class="input-group">
                 <div class="input-container _medium">
-                    <input class="@nameInput" type="text" name="name" id="name" @bind="NameValue"
+                    <input style="text-transform: capitalize;" class="@nameInput" type="text" name="name" id="name" @bind="NameValue"
                            @onfocusout="Name_Invalid" required>
                     <label for="name">Full Name</label>
                     <small class="@nameSml">@smallNameValue</small>
@@ -78,7 +81,47 @@
             </div>
         </form>
     </div>
+
+    <!--Company Information-->
     <div class="right">
+        <div class="info-container">
+            <h4 class="info-header">Company Information</h4>
+            <div class="info-content">
+                <h4 class="info-title">Office Hours</h4>
+                <div class="info-body">
+                    <div class="sub-content">
+                        <p><strong>Monday to Friday:</strong> 9:00AM - 6:00PM</p>
+                        <p><strong>Saturday:</strong> 9:00AM - 12:00NN</p>
+                    </div>
+                    <div class="sub-content">
+                        <p><strong>Holiday:</strong> Time may vary</p>
+                        <p><strong>Sunday:</strong> Close</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-content">
+                <h4 class="info-title">Contact Number</h4>
+                <div class="info-body">
+                    <div class="sub-content">
+                        <p><strong>Tel Number:</strong> (034) 707 1001</p>
+                        <p><strong>Tel Number:</strong> (034) 707 1201</p>
+                    </div>
+                    <div class="sub-content">
+                        <p><strong>Mobile Number:</strong> (smart)09123456789</p>
+                        <p><strong>Mobile Number:</strong> (globe)09263456789</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-content">
+                <h4 class="info-title">Email Address</h4>
+                <div class="info-body">
+                    <div class="sub-content">
+                        <p class="gmail"><strong>GMail:</strong><a href="#"> Hopestoneconstruction@gmail.com</a></p>
+                        <p><strong>Yahoo:</strong><a href="#"> Sample@yahoo.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="@modal">
@@ -93,9 +136,7 @@
             </div>
             <div class="_modal-body">
                 <p>
-                    Are you sure you want to cancel?
-                    <br>
-                    You will be redirected to Home Page.
+                    @modalMsg
                 </p>
             </div>
             <div class="_modal-footer">
@@ -107,6 +148,7 @@
         </div>
     </div>
 </section>
+<HomeFooter />
 
 @code {
 
@@ -153,6 +195,7 @@
 
     //Modal
     private string modal = "_modal";
+    private string modalMsg = string.Empty;
 
     private void Email_Invalid()
     {
@@ -180,6 +223,7 @@
                 emailInput = "_valid-input";
                 emailSml = "_valid-small";
                 emailValid = true;
+
             }
         }
         else if (string.IsNullOrEmpty(_emailValue))
@@ -193,6 +237,8 @@
 
         }
 
+        Form_Valid();
+
     }
 
     private void Name_Invalid()
@@ -202,32 +248,6 @@
         if (!string.IsNullOrWhiteSpace(_nameValue))
         {
             string _trimmedName = _nameValue.Trim();
-
-            string[] _arrayName = _trimmedName.Split(" ");
-
-            //for (int i = 0; i < _arrayName.Length; i++)
-            //{
-            //  Console.WriteLine(_arrayName[].ToString());
-            //}
-
-            foreach (var array in _arrayName)
-            {
-                foreach (var i in array)
-                {
-                    Console.WriteLine(i);
-
-                }
-                //var _array = array[0].ToString().Replace("f", "F");
-                //Console.WriteLine(_array);
-
-            }
-
-            //foreach (var i in _arrayName)
-            //{
-            //    var upperChar = i[0].ToString();
-            //    Console.WriteLine(upperChar.ToUpper());
-
-            //}
 
             if (_nameValue.Length <= 3)
             {
@@ -241,7 +261,6 @@
             else
             {
                 Regex rgx = new Regex(@"^[ A-Za-z0-9]$");
-                @* bool containsSpecialChar = _trimmedName.Any(char.IsSymbol); *@
                 bool containsSpecialChar = rgx.IsMatch(_trimmedName);
                 bool containsNumber = _trimmedName.Any(char.IsDigit);
                 if (containsSpecialChar || containsNumber)
@@ -260,7 +279,6 @@
                     nameSml = "_valid-small";
                     nameValid = true;
 
-                    NameValue = _trimmedName;
                 }
             }
         }
@@ -275,6 +293,7 @@
             nameValid = true;
 
         }
+        Form_Valid();
 
     }
 
@@ -306,6 +325,7 @@
                     contactSml = "small-show";
 
                     contactValid = false;
+
                 }
             }
             else
@@ -329,6 +349,7 @@
             contactValid = true;
 
         }
+        Form_Valid();
 
     }
     private void Service_Invalid()
@@ -341,6 +362,7 @@
             serviceInput = "_valid-input";
             serviceSml = "_valid-small";
             serviceLbl = "_valid-label";
+
         }
         else if (string.IsNullOrEmpty(_serviceValue))
         {
@@ -349,7 +371,9 @@
             serviceInput = "_valid-input";
             serviceSml = "_valid-small";
             serviceLbl = "_valid-label";
+
         }
+        Form_Valid();
 
     }
     private void Msg_Invalid()
@@ -376,6 +400,8 @@
                 messageInput = "_valid-input";
                 messageSml = "_valid-small";
                 msgValid = true;
+                MessageValue = FirstLetterToUpper(_messageValue);
+
             }
         }
         else if (string.IsNullOrEmpty(_messageValue))
@@ -389,15 +415,16 @@
             msgValid = true;
 
         }
+        Form_Valid();
 
     }
 
     private bool Form_Valid()
     {
-        if ((!nameValid) ||
-        (!contactValid) ||
-        (!emailValid) ||
-        (!msgValid)
+        if ((string.IsNullOrEmpty(NameValue)) ||
+        (string.IsNullOrEmpty(ContactValue)) ||
+        (string.IsNullOrEmpty(ServiceValue)) ||
+        (string.IsNullOrEmpty(MessageValue))
         )
         {
             return formValid = false;
@@ -410,7 +437,7 @@
 
     private void ContactUs_Btn()
     {
-        if (Form_Valid())
+        if (formValid)
         {
             System.Console.WriteLine("valid");
         }
@@ -418,20 +445,6 @@
         {
             System.Console.WriteLine("Invalid");
         }
-    }
-    private void Clear_Form()
-    {
-        if (
-        !(string.IsNullOrEmpty(NameValue)) ||
-        !(string.IsNullOrEmpty(ContactValue)) ||
-        !(string.IsNullOrEmpty(EmailValue)) ||
-        !(string.IsNullOrEmpty(ServiceValue)) ||
-        !(string.IsNullOrEmpty(MessageValue))
-        )
-        {
-            modal = "_modal show";
-        }
-
     }
 
     private void Clear_FormValue()
@@ -443,15 +456,44 @@
         MessageValue = string.Empty;
 
         modal = "_modal";
+
+        nm.NavigateTo("/");
+
     }
 
+    private void Show_Modal()
+    {
+        modal = "_modal modal-show";
+
+        if (!(string.IsNullOrEmpty(NameValue)) ||
+        !(string.IsNullOrEmpty(ContactValue)) ||
+        !(string.IsNullOrEmpty(EmailValue)) ||
+        !(string.IsNullOrEmpty(ServiceValue)) ||
+        !(string.IsNullOrEmpty(MessageValue))
+        )
+        {
+            modalMsg = "You will be redirected to \"Home Page\" and message will be discarded.";
+        }
+        else
+        {
+            modalMsg = "Are you sure you want to exit? You will be redirected to \"Home Page\".";
+        }
+    }
     private void Close_Modal()
     {
         modal = "_modal";
     }
 
-    private void StringToProper(params string[] name)
+    public string FirstLetterToUpper(string str)
     {
+        if (str == null)
+            return null;
+
+        if (str.Length > 1)
+            return char.ToUpper(str[0]) + str.Substring(1);
+
+        return str.ToUpper();
 
     }
+
 }

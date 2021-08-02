@@ -1,129 +1,128 @@
 .blog {
-    padding-top: 120px;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  padding-top: 120px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .left,
 .right {
-    // flex: 1 1 45%;
-    min-width: 450px;
-    width: 45%;
-    min-height: 250px;
-    height: 430px;
-    margin-bottom: 20px;
+  // flex: 1 1 45%;
+  min-width: 450px;
+  width: 45%;
+  min-height: 250px;
+  height: 430px;
+  margin-bottom: 20px;
 }
 
 .left {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    form {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-        background-color: var(--gray-70);
-    }
+  form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--gray-70);
+  }
 }
 
 .right {
-    background-color: red;
+  background-color: red;
 }
 
 @media screen and (max-width: 912px) {
-    .left,
-    .right {
-        width: 90%;
-    }
+  .left,
+  .right {
+    width: 90%;
+  }
 }
 
 .input-group {
-    width: 100%;
-    height: max-content;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+
+  .input-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
+    flex-direction: row;
+    border: 1px solid gainsboro;
+    background-color: var(--gray-70);
+    border-radius: 5px;
+    padding: 10px 5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  label {
+    position: absolute;
+    margin-bottom: 0px;
+    background-color: transparent;
+    width: fit-content;
+    margin-left: 20px;
+    font-size: 12px;
+    color: var(--gray);
+    z-index: 5;
+  }
+
+  input,
+  input,
+  textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-left: 10px;
+    background-color: transparent;
     font-size: 14px;
+  }
 
+  input:focus ~ label,
+  input:valid ~ label,
+  textarea:focus ~ label,
+  textarea:valid ~ label {
+    color: var(--aqua);
+    transform: translate(-15px, -10px);
+    transition: transform 600ms ease;
+  }
+  // input:invalid ~ label {
+  //   color: var(--aqua);
+  //   transform: translate(-15px, -15px);
+  //   transition: transform 600ms ease;
+  // }
+
+  ._tiny {
+    width: calc(100% / 4);
+  }
+
+  ._small {
+    width: calc(100% / 3);
+  }
+
+  ._medium {
+    width: calc((100% / 2) - 10px);
+  }
+
+  ._large {
+    width: calc(100% / 1);
+    // margin: auto 12px;
+  }
+
+  @media screen and (max-width: 812px) {
     .input-container {
-        display: flex;
-        flex-direction: row;
-        border: 1px solid gainsboro;
-        background-color: var(--gray-70);
-        border-radius: 5px;
-        padding: 10px 5px;
-        position: relative;
-        z-index: 1;
+      margin-bottom: 0.5rem !important;
     }
 
-    label {
-        position: absolute;
-        margin-bottom: 0px;
-        background-color: transparent;
-        width: fit-content;
-        margin-left: 20px;
-        font-size: 12px;
-        color: var(--gray);
-        z-index: 5;
-    }
-
-    input,
-    input,
-    textarea {
-        border: none;
-        outline: none;
-        width: 100%;
-        margin-left: 10px;
-        background-color: transparent;
-        font-size: 14px;
-    }
-
-    input:focus ~ label,
-    input:valid ~ label,
-    textarea:focus ~ label,
-    textarea:valid ~ label {
-        color: var(--aqua);
-        transform: translate(-15px, -10px);
-        transition: transform 600ms ease;
-    }
-    // input:invalid ~ label {
-    //   color: var(--aqua);
-    //   transform: translate(-15px, -15px);
-    //   transition: transform 600ms ease;
-    // }
-
-    ._tiny {
-        width: calc(100% / 4);
-    }
-
-    ._small {
-        width: calc(100% / 3);
-    }
-
-    ._medium {
-        width: calc((100% / 2) - 10px);
-    }
-
+    ._tiny,
+    ._small,
+    ._medium,
     ._large {
-        width: calc(100% / 1);
-        // margin: auto 12px;
+      width: 100%;
     }
-
-    @media screen and (max-width: 812px) {
-        .input-container {
-            margin-bottom: 0.5rem !important;
-        }
-
-        ._tiny,
-        ._small,
-        ._medium,
-        ._large {
-            width: 100%;
-        }
-    }
+  }
 }

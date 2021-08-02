@@ -1,0 +1,31 @@
+.home-footer {
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+  padding-top: 10px;
+  width: 100%;
+  a {
+    color: var(--aqua);
+  }
+
+  .container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+
+    p:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1034px) {
+  .home-footer {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 656px) {
+  .container-fluid {
+    flex-direction: column;
+  }
+}

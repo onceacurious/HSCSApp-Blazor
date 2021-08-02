@@ -1,0 +1,41 @@
+.home-footer {
+  position: fixed;
+  bottom: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.home-footer a {
+  color: var(--aqua);
+}
+
+.home-footer .container-fluid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.home-footer .container-fluid p:not(:last-child) {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1034px) {
+  .home-footer {
+    position: static;
+  }
+}
+
+@media screen and (max-width: 656px) {
+  .container-fluid {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+/*# sourceMappingURL=HomeFooter.razor.css.map */
