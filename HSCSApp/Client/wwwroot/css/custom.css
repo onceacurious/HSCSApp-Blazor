@@ -183,7 +183,6 @@ form .input-group ._large {
   form .input-group ._small,
   form .input-group ._medium,
   form .input-group ._large {
-    min-width: 100 !important;
     width: 100% !important;
   }
 }

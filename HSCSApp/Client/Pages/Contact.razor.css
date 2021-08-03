@@ -142,6 +142,10 @@
   font-size: 80%;
 }
 
+._modal-header p {
+  font-weight: lighter !important;
+}
+
 ._modal-body {
   font-size: 14px;
 }

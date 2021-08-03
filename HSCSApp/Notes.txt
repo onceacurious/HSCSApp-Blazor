@@ -1,0 +1,13 @@
+TO DO:
+-Take note on how to prepare the Shared folder with classes for binding value.
+
+
+
+
+BUGS TO FIX:
+
+
+
+
+
+PLAN:

@@ -3,6 +3,7 @@
 @layout HomePage
 @inject IJSRuntime js
 @inject NavigationManager nm
+@inject IFormValidations fv
 
 <section class="contact">
 
@@ -36,7 +37,7 @@
                     <input class="@emailInput" type="email" name="email" id="email" @bind="EmailValue"
                            @onfocusout="Email_Invalid" required>
                     <label class="@emailLbl" for="email">Email Address</label>
-                    <small class="@emailSml">@smallServiceValue</small>
+                    <small class="@emailSml">@smallEmailValue</small>
                 </div>
 
                 <!--PLEASE STUDY DICTIONARY-->
@@ -45,10 +46,10 @@
                         <option value="" hidden></option>
                         <option value="1">Planning & Design</option>
                         <option value="2">Construction</option>
-                        <option value="3">Renovation</option>
-                        <option value="4">Electrical</option>
-                        <option value="5">Electronics</option>
-                        <option value="6">Mechanical</option>
+                        <option value="3">Electrical</option>
+                        <option value="4">Electronics</option>
+                        <option value="5">Mechanical</option>
+                        <option value="6">Renovation</option>
                         <option value="7">Plumbing</option>
                         <option value="8">Consultation</option>
                     </select>
@@ -80,6 +81,33 @@
                 }
             </div>
         </form>
+    </div>
+
+    <div class="@modalSave">
+        <div class="_modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close_Modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="_modal-header">
+                <h4 class="_modal-title">
+                    Contact Us
+                </h4>
+                <p class="text-dark">Please kindly review message. Click <strong class="text-success bg-light px-1">"OK"</strong> to submit and <strong class="text-info bg-light px-1">x</strong> to go back. Thank you.</p>
+            </div>
+            <div class="_modal-body">
+                <p><strong class="text-dark">Name:</strong> @NameValue</p>
+                <p><strong class="text-dark">Contact Number:</strong> @ContactValue</p>
+                <p style="word-wrap: break-word"><strong class="text-dark">Email Address:</strong> @EmailValue</p>
+                <p><strong class="text-dark">Service:</strong> @ServiceValue</p>
+                <p><strong class="text-dark">Message:</strong> @MessageValue</p>
+            </div>
+            <div class="_modal-footer">
+                <button class="btn btn-success" type="button" @onclick="Submitted" tabindex="0">Ok</button>
+            </div>
+            <p class="_modal-slogan">
+                Hopestone Construction Service
+            </p>
+        </div>
     </div>
 
     <!--Company Information-->
@@ -116,8 +144,8 @@
                 <h4 class="info-title">Email Address</h4>
                 <div class="info-body">
                     <div class="sub-content">
-                        <p class="gmail"><strong>GMail:</strong><a href="#"> Hopestoneconstruction@gmail.com</a></p>
-                        <p><strong>Yahoo:</strong><a href="#"> Sample@yahoo.com</a></p>
+                        <p class="gmail"><strong>GMail:</strong><a href="#" tabindex="-1"> Hopestoneconstruction@gmail.com</a></p>
+                        <p><strong>Yahoo:</strong><a href="#" tabindex="-1"> Sample@yahoo.com</a></p>
                     </div>
                 </div>
             </div>
@@ -135,7 +163,7 @@
                 </h4>
             </div>
             <div class="_modal-body">
-                <p>
+                <p class="text-dark">
                     @modalMsg
                 </p>
             </div>
@@ -197,6 +225,9 @@
     private string modal = "_modal";
     private string modalMsg = string.Empty;
 
+    private string modalSave = "_modal";
+    private string modalSaveMsg = string.Empty;
+
     private void Email_Invalid()
     {
 
@@ -211,6 +242,7 @@
             !(_emailValue.Contains('@')) ||
             !(_emailValue.EndsWith(".com")))
             {
+                smallEmailValue = "Invalid email address";
                 emailLbl = "_invalid";
                 emailInput = "_invalid-input";
                 emailSml = "small-show";
@@ -260,12 +292,9 @@
             }
             else
             {
-                Regex rgx = new Regex(@"^[ A-Za-z0-9]$");
-                bool containsSpecialChar = rgx.IsMatch(_trimmedName);
-                bool containsNumber = _trimmedName.Any(char.IsDigit);
-                if (containsSpecialChar || containsNumber)
+                if (!_trimmedName.All(Char.IsLetter) && _trimmedName.All(Char.IsDigit))
                 {
-                    smallNameValue = "Invalid (No number & character)";
+                    smallNameValue = "Invalid name";
                     nameLbl = "_invalid";
                     nameInput = "_invalid-input";
                     nameSml = "small-show";
@@ -299,8 +328,7 @@
 
     private void Contact_Invalid()
     {
-
-        var _contactValue = ContactValue;
+        var _contactValue = fv.NumberValidation(ContactValue);
 
         if (!string.IsNullOrWhiteSpace(_contactValue))
         {
@@ -316,6 +344,9 @@
                     contactSml = "_valid-small";
                     contactLbl = "_valid-label";
                     contactValid = true;
+
+                    System.Console.WriteLine(_trimmedContact);
+                    ContactValue = _trimmedContact;
                 }
                 else
                 {
@@ -336,6 +367,8 @@
                 contactSml = "small-show";
 
                 contactValid = false;
+
+                smallContactValue = "Number too short.";
             }
         }
         else if (string.IsNullOrEmpty(_contactValue))
@@ -400,7 +433,8 @@
                 messageInput = "_valid-input";
                 messageSml = "_valid-small";
                 msgValid = true;
-                MessageValue = FirstLetterToUpper(_messageValue);
+
+                MessageValue = fv.FirstLetterToUpper(_messageValue);
 
             }
         }
@@ -431,7 +465,18 @@
         }
         else
         {
-            return formValid = true;
+            if ((nameValid) ||
+            (contactValid) ||
+            (emailValid) ||
+            (msgValid)
+            )
+            {
+                return formValid = true;
+            }
+            else
+            {
+                return formValid = false;
+            }
         }
     }
 
@@ -439,11 +484,12 @@
     {
         if (formValid)
         {
-            System.Console.WriteLine("valid");
+            modalSave = "_modal modal-show";
+            //modalSaveMsg = $"Name: {NameValue}, Contact Number: {ContactValue}, Email Address: {EmailValue}, Service: {ServiceValue}, and Message: {MessageValue}";
         }
         else
         {
-            System.Console.WriteLine("Invalid");
+            modalSave = "_modal";
         }
     }
 
@@ -482,18 +528,20 @@
     private void Close_Modal()
     {
         modal = "_modal";
+        modalSave = "_modal";
+
     }
 
-    public string FirstLetterToUpper(string str)
+    private void Submitted()
     {
-        if (str == null)
-            return null;
-
-        if (str.Length > 1)
-            return char.ToUpper(str[0]) + str.Substring(1);
-
-        return str.ToUpper();
-
+        modalSave = "_modal";
+        NameValue = string.Empty;
+        ContactValue = string.Empty;
+        EmailValue = string.Empty;
+        ServiceValue = string.Empty;
+        MessageValue = string.Empty;
     }
+
+    //Service
 
 }
