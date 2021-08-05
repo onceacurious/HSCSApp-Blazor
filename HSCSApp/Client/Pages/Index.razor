@@ -10,85 +10,9 @@
     and other thing that needs attention and can be close afterwards.
 -->
 
-<style>
-    #quotation {
-        position: relative;
-        width: 80% !important;
-        height: max-content !important;
-        color: var(--aqua) !important;
-        background-color: var(--white) !important;
-        padding: 20px 10px 10px 10px;
-        border-radius: 10px;
-        border: 1px solid var(--gray);
-        z-index: 1;
-    }
-</style>
-
 <title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
-
-<div class="@serviceQuote">
-    <h4>Service Quotation</h4>
-    <EditForm id="quotation" Model="@quote">
-        <button id="quote-close" type="button" @onclick="Close_Quote">
-            <i class="fas fa-times fa-lg" style="color: var(--aqua);"></i>
-        </button>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <InputText id="name" @bind-Value="@quote.ClientName" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="contactNumber">Contact Number</label>
-                    <InputText id="contactNumber" @bind-Value="@quote.ContactNumber" class="form-control" />
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="emailAddress">Email Address</label>
-                    <InputText id="emailAddress" @bind-Value="@quote.EmailAddress" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <!--
-                            Upon selection one of the option, it will incur an error
-                            since the back end wasn't yet implemented
-                            -->
-                <div class="form-group">
-                    <label for="serviceName">Service Name</label>
-                    <InputSelect id="serviceName" @bind-Value="@quote.ServiceId" class="form-control">
-                        <option value="none" hidden>--Select--</option>
-                        <option value="@quote.ServiceId">Planning & Design</option>
-                        <option value="2">Construction</option>
-                        <option value="3">Electrical</option>
-                        <option value="4">Electronics</option>
-                        <option value="5">Mechanical</option>
-                        <option value="6">Renovation</option>
-                        <option value="7">Plumbing</option>
-                        <option value="8">Consultation</option>
-                    </InputSelect>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="details">Brief details of inquiry</label>
-            <InputTextArea id="details" @bind-Value="@quote.Details" class="form-control" />
-        </div>
-
-        <div class="row">
-            <div class="col-6 text-center">
-                <button class="btn btn-success" type="submit">Submit</button>
-            </div>
-            <div class="col-6 text-center">
-                <button class="btn btn-danger" type="button" @onclick="Close_Quote">Cancel</button>
-            </div>
-        </div>
-    </EditForm>
+<!-- Service Quotation-->
+<div class="qoutation">
 </div>
 
 <section class="hero">
@@ -111,7 +35,7 @@
                                 We aim to provide outstanding Customer Service and distinctive interior/exterior
                                 designs.
                             </p>
-                            <a href="" class="btn cta-btn">Get A Quote</a>
+                            <a href="/service" class="btn cta-btn">Get A Quote</a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +116,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -211,7 +135,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -230,7 +154,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -249,7 +173,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -271,7 +195,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -290,7 +214,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -309,7 +233,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -328,7 +252,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn" @onclick="Open_Quote">
+                                <a class="btn">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -429,7 +353,7 @@
                     <a href="">FAQ</a>
                 </li>
                 <li>
-                    <a href="https://goo.gl/maps/Yms9MCX3W8VzX4Zo7" target="_blank">Sitemap</a>
+                    <a href="https://goo.gl/maps/Yms9MCX3W8VzX4Zo7" target="_blank">Site Map</a>
                 </li>
                 <li>
                     <a href="">Credits</a>
@@ -445,26 +369,10 @@
 </section>
 
 @code {
-    ServiceQuotation quote = new ServiceQuotation();
 
     public ElementReference footerObserver { get; set; }
+
     public bool IsIntersecting { get; set; }
-
-    private IntersectionObserver Observer;
-
-    Service myServices = new Service();
-
-    private string serviceQuote = "hide";
-
-    private void Close_Quote()
-    {
-        serviceQuote = "hide";
-    }
-
-    private void Open_Quote()
-    {
-        serviceQuote = "service-quote-popover";
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -497,8 +405,12 @@
             }
         });
     }
+
+    private IntersectionObserver Observer;
+
     public async ValueTask DisposeAsync()
     {
+
         if (this.Observer != null)
         {
             await this.Observer.Dispose();

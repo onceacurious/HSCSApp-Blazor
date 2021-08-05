@@ -3,6 +3,7 @@
     public interface IFormValidations
     {
         string FirstLetterToUpper(string str);
-        string NumberValidation(string str);
+
+        string NumberDefaultFormat(string str);
     }
 }

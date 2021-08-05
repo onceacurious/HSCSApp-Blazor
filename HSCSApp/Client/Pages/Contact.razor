@@ -5,8 +5,11 @@
 @inject NavigationManager nm
 @inject IFormValidations fv
 
+<title>HOPESTONE | Contact Us</title>
 <section class="contact">
-
+    <!--
+        Please implement any input masking for the user limitation
+    -->
     <!--Contact Form-->
     <div class="left">
         <form action="">
@@ -40,7 +43,12 @@
                     <small class="@emailSml">@smallEmailValue</small>
                 </div>
 
-                <!--PLEASE STUDY DICTIONARY-->
+                <!--
+                    PLEASE STUDY DICTIONARY
+                    OR
+
+                -->
+
                 <div class="input-container _medium">
                     <select name="service" id="service" required @bind="ServiceValue" @onfocusout="Service_Invalid">
                         <option value="" hidden></option>
@@ -102,7 +110,7 @@
                 <p><strong class="text-dark">Message:</strong> @MessageValue</p>
             </div>
             <div class="_modal-footer">
-                <button class="btn btn-success" type="button" @onclick="Submitted" tabindex="0">Ok</button>
+                <button class="btn btn-success" type="button" @onclick="Submitted" tabindex="0">OK</button>
             </div>
             <p class="_modal-slogan">
                 Hopestone Construction Service
@@ -131,12 +139,12 @@
                 <h4 class="info-title">Contact Number</h4>
                 <div class="info-body">
                     <div class="sub-content">
-                        <p><strong>Tel Number:</strong> (034) 707 1001</p>
+                        <p><strong>Tel Number:</strong> (034) 700 6839</p>
                         <p><strong>Tel Number:</strong> (034) 707 1201</p>
                     </div>
                     <div class="sub-content">
-                        <p><strong>Mobile Number:</strong> (smart)09123456789</p>
-                        <p><strong>Mobile Number:</strong> (globe)09263456789</p>
+                        <p><strong>Mobile Number:</strong> (smart)09504061511</p>
+                        <p><strong>Mobile Number:</strong> (globe)09167422772</p>
                     </div>
                 </div>
             </div>
@@ -144,7 +152,7 @@
                 <h4 class="info-title">Email Address</h4>
                 <div class="info-body">
                     <div class="sub-content">
-                        <p class="gmail"><strong>GMail:</strong><a href="#" tabindex="-1"> Hopestoneconstruction@gmail.com</a></p>
+                        <p class="gmail"><strong>GMail:</strong><a href="mailto:hopestoneconstruction@gmail.com" target="_blank" tabindex="-1"> Hopestoneconstruction@gmail.com</a></p>
                         <p><strong>Yahoo:</strong><a href="#" tabindex="-1"> Sample@yahoo.com</a></p>
                     </div>
                 </div>
@@ -326,9 +334,19 @@
 
     }
 
+    /**
+        Please be specific in validation filter, like: of number starts with 63, 09, 9,
+        Then add in the back-end that the number will starts in 09 to have a specific length of the number (11 char).
+        If the number is < 10 and !starts with 9 or 09 and <=7,
+        Then both number is too short.
+
+        -- In addition, also study switch for much clear looping.
+    **/
+
     private void Contact_Invalid()
     {
-        var _contactValue = fv.NumberValidation(ContactValue);
+
+        var _contactValue = fv.NumberDefaultFormat(ContactValue);
 
         if (!string.IsNullOrWhiteSpace(_contactValue))
         {

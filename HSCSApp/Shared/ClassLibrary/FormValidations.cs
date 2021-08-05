@@ -19,34 +19,51 @@ namespace HSCSApp.Shared.ClassLibrary
             return str.ToUpper();
         }
 
-        public string NumberValidation(string str)
+        public string NumberDefaultFormat(string str)
         {
-            if (string.IsNullOrEmpty(str))
+            if (str.StartsWith("09") && str.Length == 11)
             {
-                return null;
+                return str;
             }
-
-            if (str.Length > 1)
+            else if (str.StartsWith("9") && str.Length == 10)
             {
-                if (str.StartsWith('+'))
-                {
-                    int index = str.IndexOf('+');
-                    return str.Remove(index, 1);
-                }
-                else if (str.Contains(')') && str.Contains('('))
-                {
-                    int index = str.IndexOf(')');
-                    string newStr = str.Remove(index, 1);
-                    int newIndex = str.IndexOf('(');
-                    return newStr.Remove(newIndex, 1);
-                }
-                else
-                {
-                    return str;
-                }
+                return "0" + str;
             }
-
-            return str;
+            else if (str.StartsWith("+09") && str.Length == 12)
+            {
+                return str.Remove(0, 1);
+            }
+            else if (str.StartsWith("+9") && str.Length == 11)
+            {
+                return "0" + str.Remove(0, 1);
+            }
+            else if (str.StartsWith("+639") && str.Length == 13)
+            {
+                return "0" + str.Remove(0, 3);
+            }
+            else if (str.StartsWith("+630") && str.Length == 14)
+            {
+                return str.Remove(0, 3);
+            }
+            else if (str.StartsWith("630") && str.Length == 13)
+            {
+                return str.Remove(0, 2);
+            }
+            else if (str.Contains(')') && str.Contains('(') && str.Length < 9)
+            {
+                int index = str.IndexOf(')');
+                string newStr = str.Remove(index, 1);
+                int newIndex = str.IndexOf('(');
+                return newStr.Remove(newIndex, 1);
+            }
+            else if (str.Length > 9)
+            {
+                return str + "***";
+            }
+            else
+            {
+                return str;
+            }
         }
     }
 }

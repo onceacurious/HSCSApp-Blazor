@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,AAAA,SAAS,CAAC;EACb,WAAW,EAAE,IAAI;EACjB,gBAAgB,EAAE,cAAc;EAChC,KAAK,EAAE,YAAY;EACnB,UAAU,EAAE,KAAK;CACpB;;AAED,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EAC/B,AAAA,OAAO,AAAA,SAAS,CAAC;IACb,WAAW,EAAE,KAAK;GACrB",
+    "sources": [
+        "Service.razor.scss"
+    ],
+    "names": [],
+    "file": "Service.razor.css"
+}

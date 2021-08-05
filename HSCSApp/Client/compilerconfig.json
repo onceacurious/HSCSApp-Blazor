@@ -2,5 +2,13 @@
   {
     "outputFile": "Pages/Index.razor.css",
     "inputFile": "Pages/Index.razor.scss"
+  },
+  {
+    "outputFile": "Pages/Services.css",
+    "inputFile": "Pages/Services.scss"
+  },
+  {
+    "outputFile": "Pages/Service.razor.css",
+    "inputFile": "Pages/Service.razor.scss"
   }
 ]

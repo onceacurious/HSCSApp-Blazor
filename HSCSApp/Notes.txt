@@ -1,7 +1,16 @@
 TO DO:
 -Take note on how to prepare the Shared folder with classes for binding value.
+-Saving data to local storage and also saving cache for theme.
 
+MODEL
+-|ServiceQuotation.cs : 
+-|-Id, Subject,  List<Services>, Message, DataInquire, DateAcknowledge, DateResponded, IsActive, IsSuccess, PersonHandled, List<Client>
 
+-|Services.cs :
+-|-Id, Title, Description, Image, Url
+
+-|Client.cs
+-|-Id, Name, ContactNumber, List<Service>, LastTransaction, IsActive
 
 
 BUGS TO FIX:
@@ -11,3 +20,14 @@ BUGS TO FIX:
 
 
 PLAN:
+
+
+
+APPLICATION FLOW:
+-Customer go to the website
+-Then if He/She click "Get A Quote" cta:
+-|-He/She will be redirected to Services Page, with a quotation form displayed.
+
+
+BACKEND FLOW:
+-Create a model first

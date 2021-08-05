@@ -45,6 +45,8 @@ form .input-group .input-container {
   border-radius: 5px;
   padding: 10px 5px 5px 5px;
   position: relative;
+  -webkit-box-shadow: inset 0px 0px 6px var(--gray);
+          box-shadow: inset 0px 0px 6px var(--gray);
   z-index: 1;
 }
 
@@ -237,8 +239,10 @@ form .input-group ._large {
 ._modal-body {
   background-color: var(--white);
   border-radius: 5px;
-  padding: auto 20px;
+  padding: 5px 10px;
   margin-bottom: 0.25rem;
+  -webkit-box-shadow: inset 0px 0px 4px var(--gray);
+          box-shadow: inset 0px 0px 4px var(--gray);
 }
 
 ._modal-body p {

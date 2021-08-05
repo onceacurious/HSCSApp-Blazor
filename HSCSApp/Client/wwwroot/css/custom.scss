@@ -1,215 +1,217 @@
 $margin-bot: 1.5rem;
 
 form {
-    position: relative;
+  position: relative;
+  height: max-content;
+  min-width: 90%;
+
+  .close-btn {
+    position: absolute;
+    color: red;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .input-group {
+    width: 100%;
     height: max-content;
-    min-width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: $margin-bot;
+    font-size: 14px;
 
-    .close-btn {
-        position: absolute;
-        color: red;
-        top: 5px;
-        right: 10px;
-        cursor: pointer;
-        z-index: 1;
+    .input-container {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid gainsboro;
+      background-color: var(--white);
+      border-radius: 5px;
+      padding: 10px 5px 5px 5px;
+      position: relative;
+      box-shadow: inset 0px 0px 6px var(--gray);
+      z-index: 1;
     }
 
-    .input-group {
+    label {
+      position: absolute;
+      margin-bottom: 0px;
+      background-color: transparent;
+      width: fit-content;
+      margin-left: 20px;
+      font-size: 12px;
+      color: var(--gray);
+      z-index: 5;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    textarea,
+    select {
+      border: none;
+      outline: none;
+      width: 100%;
+      margin-left: 10px;
+      background-color: transparent;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    input[type="email"]:focus ~ label,
+    input[type="email"]:valid ~ label,
+    input[type="text"]:focus ~ label,
+    input[type="text"]:valid ~ label,
+    textarea:focus ~ label,
+    textarea:valid ~ label {
+      color: var(--aqua);
+      transform: translate(-15px, -10px);
+      transition: transform 600ms ease;
+    }
+
+    select:focus ~ label,
+    select:valid ~ label {
+      color: var(--aqua);
+      transform: translate(-15px, -10px);
+      transition: transform 600ms ease;
+    }
+
+    small {
+      visibility: hidden;
+      position: absolute;
+      bottom: -15px;
+      left: 10%;
+      font-style: italic;
+      animation: colorWarning 5s ease infinite;
+    }
+
+    .small-show {
+      visibility: visible;
+    }
+
+    ._invalid {
+      color: var(--aqua);
+      transform: translate(-15px, -10px);
+      transition: transform 600ms ease;
+    }
+
+    ._invalid-input {
+      animation: colorWarning 2s ease infinite;
+    }
+
+    ._valid-label {
+      position: absolute;
+      margin-bottom: 0px;
+      background-color: transparent;
+      width: fit-content;
+      margin-left: 20px;
+      font-size: 12px;
+      color: var(--gray);
+      z-index: 5;
+    }
+
+    ._valid-input {
+      color: black;
+    }
+
+    ._valid-small {
+      visibility: hidden;
+    }
+
+    ._tiny {
+      width: calc(100% / 4);
+    }
+
+    ._small {
+      width: calc(100% / 3);
+    }
+
+    ._medium {
+      width: calc((100% / 2) - 10px);
+    }
+
+    ._large {
+      width: calc(100% / 1);
+      // margin: auto 12px;
+    }
+
+    @media screen and (max-width: 812px) {
+      .input-container:not(:last-child) {
+        margin-bottom: $margin-bot !important;
+      }
+
+      ._tiny,
+      ._small,
+      ._medium,
+      ._large {
         width: 100%;
-        height: max-content;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: $margin-bot;
-        font-size: 14px;
-
-        .input-container {
-            display: flex;
-            flex-direction: row;
-            border: 1px solid gainsboro;
-            background-color: var(--white);
-            border-radius: 5px;
-            padding: 10px 5px 5px 5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        label {
-            position: absolute;
-            margin-bottom: 0px;
-            background-color: transparent;
-            width: fit-content;
-            margin-left: 20px;
-            font-size: 12px;
-            color: var(--gray);
-            z-index: 5;
-        }
-
-        input[type="email"],
-        input[type="text"],
-        textarea,
-        select {
-            border: none;
-            outline: none;
-            width: 100%;
-            margin-left: 10px;
-            background-color: transparent;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        input[type="email"]:focus ~ label,
-        input[type="email"]:valid ~ label,
-        input[type="text"]:focus ~ label,
-        input[type="text"]:valid ~ label,
-        textarea:focus ~ label,
-        textarea:valid ~ label {
-            color: var(--aqua);
-            transform: translate(-15px, -10px);
-            transition: transform 600ms ease;
-        }
-
-        select:focus ~ label,
-        select:valid ~ label {
-            color: var(--aqua);
-            transform: translate(-15px, -10px);
-            transition: transform 600ms ease;
-        }
-
-        small {
-            visibility: hidden;
-            position: absolute;
-            bottom: -15px;
-            left: 10%;
-            font-style: italic;
-            animation: colorWarning 5s ease infinite;
-        }
-
-        .small-show {
-            visibility: visible;
-        }
-
-        ._invalid {
-            color: var(--aqua);
-            transform: translate(-15px, -10px);
-            transition: transform 600ms ease;
-        }
-
-        ._invalid-input {
-            animation: colorWarning 2s ease infinite;
-        }
-
-        ._valid-label {
-            position: absolute;
-            margin-bottom: 0px;
-            background-color: transparent;
-            width: fit-content;
-            margin-left: 20px;
-            font-size: 12px;
-            color: var(--gray);
-            z-index: 5;
-        }
-
-        ._valid-input {
-            color: black;
-        }
-
-        ._valid-small {
-            visibility: hidden;
-        }
-
-        ._tiny {
-            width: calc(100% / 4);
-        }
-
-        ._small {
-            width: calc(100% / 3);
-        }
-
-        ._medium {
-            width: calc((100% / 2) - 10px);
-        }
-
-        ._large {
-            width: calc(100% / 1);
-            // margin: auto 12px;
-        }
-
-        @media screen and (max-width: 812px) {
-            .input-container:not(:last-child) {
-                margin-bottom: $margin-bot !important;
-            }
-
-            ._tiny,
-            ._small,
-            ._medium,
-            ._large {
-                width: 100%;
-            }
-        }
-
-        @media screen and (max-width: 412px) {
-            ._tiny,
-            ._small,
-            ._medium,
-            ._large {
-                width: 100% !important;
-            }
-        }
+      }
     }
+
+    @media screen and (max-width: 412px) {
+      ._tiny,
+      ._small,
+      ._medium,
+      ._large {
+        width: 100% !important;
+      }
+    }
+  }
 }
 
 ._modal {
-    visibility: hidden;
-    position: fixed;
-    overflow: hidden !important;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--black-70);
+  visibility: hidden;
+  position: fixed;
+  overflow: hidden !important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black-70);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  &-content {
+    width: 40% !important;
+    height: max-content;
+    background-color: gainsboro;
+    border-radius: 20px;
+    padding: 10px 15px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 999;
+    flex-direction: column;
+  }
 
-    &-content {
-        width: 40% !important;
-        height: max-content;
-        background-color: gainsboro;
-        border-radius: 20px;
-        padding: 10px 15px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+  &-header,
+  &-body,
+  &-footer,
+  &-slogan,
+  &-title {
+    width: 100%;
+  }
+
+  &-body {
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 0.25rem;
+    box-shadow: inset 0px 0px 4px var(--gray);
+
+    p {
+      margin: auto 5px;
     }
+  }
 
-    &-header,
-    &-body,
-    &-footer,
-    &-slogan,
-    &-title {
-        width: 100%;
-    }
+  &-footer {
+    text-align: right;
+  }
 
-    &-body {
-        background-color: var(--white);
-        border-radius: 5px;
-        padding: auto 20px;
-        margin-bottom: 0.25rem;
-
-        p {
-            margin: auto 5px;
-        }
-    }
-
-    &-footer {
-        text-align: right;
-    }
-
-    .close {
-        align-self: flex-end;
-    }
+  .close {
+    align-self: flex-end;
+  }
 }
