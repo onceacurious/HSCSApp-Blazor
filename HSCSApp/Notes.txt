@@ -31,3 +31,8 @@ APPLICATION FLOW:
 
 BACKEND FLOW:
 -Create a model first
+
+
+
+IMPORTANT NOTES:
+-If si Client nag click sang service, dapat ang logo kag ang name ma lain man, then ang unod sang form ma lain man.

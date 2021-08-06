@@ -2,8 +2,6 @@
 @layout HomePage
 @inject IJSRuntime js
 @inject IIntersectionObserverService observer
-@* @implements IAsyncDisposable *@
-
 <!--
     Notes:
     There will be a floating card at the very start of the application for new updates
@@ -12,7 +10,24 @@
 
 <title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
 <!-- Service Quotation-->
-<div class="qoutation">
+<div class="quotation @showQuote">
+    <div class="quotation-container">
+        <button type="button" class="close" data-dismiss="" aria-label="Close" @onclick="CloseQuote">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="left">
+            <div class="service-icon">
+                <img src=@serviceIcon alt="Service Icon">
+            </div>
+        </div>
+        <div class="right">
+            <div class="service-title">
+                <h4>@serviceTitle</h4>
+            </div>
+            <div class="form-container">
+            </div>
+        </div>
+    </div>
 </div>
 
 <section class="hero">
@@ -116,7 +131,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowPlanning">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -135,7 +150,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowConstruction">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -154,7 +169,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowRenovation">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -173,7 +188,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowMechanical">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -195,7 +210,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowElectrical">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -214,7 +229,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowElectronics">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -233,7 +248,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowPlumbing">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -252,7 +267,7 @@
                     <div class="item-content">
                         <div class="img-container">
                             <div class="img-overlay">
-                                <a class="btn">
+                                <a class="btn" @onclick="ShowConsult">
                                     <i class="fas fa-edit"></i>
                                     Get a quote
                                 </a>
@@ -369,7 +384,6 @@
 </section>
 
 @code {
-
     public ElementReference footerObserver { get; set; }
 
     public bool IsIntersecting { get; set; }
@@ -415,6 +429,67 @@
         {
             await this.Observer.Dispose();
         }
+    }
+
+    //Quote Pop-over
+    //Service
+    private string serviceIcon = string.Empty;
+    private string serviceTitle = string.Empty;
+    private string showQuote = string.Empty;
+    @* private string showQuote = "_show-quote"; *@
+
+    private void ShowPlanning()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/planning_icon.png";
+        serviceTitle = "planning & design";
+    }
+    private void ShowConstruction()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/construction_icon.png";
+        serviceTitle = "Construction";
+    }
+    private void ShowRenovation()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/renovation_icon.png";
+        serviceTitle = "Renovation";
+    }
+    private void ShowMechanical()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/mechanic_icon.png";
+        serviceTitle = "Mechanical";
+    }
+    private void ShowElectrical()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/electrical_icon.png";
+        serviceTitle = "Electrical";
+    }
+    private void ShowElectronics()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/electronics_icon.png";
+        serviceTitle = "Electronics";
+    }
+    private void ShowPlumbing()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/plumbing_icon.png";
+        serviceTitle = "Plumbing";
+    }
+    private void ShowConsult()
+    {
+        showQuote = "_show-quote";
+        serviceIcon = "images/consult_icon.png";
+        serviceTitle = "Consultation";
+    }
+
+    private void CloseQuote()
+    {
+        showQuote = "_hide-quote";
     }
 
 }
