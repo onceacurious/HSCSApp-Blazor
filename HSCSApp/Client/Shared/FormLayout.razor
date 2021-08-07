@@ -1,0 +1,400 @@
+﻿@inject IFormValidations fv
+
+<form action="">
+    <p class="contact-caption">We'd like to hear from you!</p>
+    <!--Row 1-->
+    <div class="input-group">
+        <div class="input-container _medium">
+            <input style="text-transform: capitalize;" class="@nameInput" type="text" name="name" id="name" @bind="NameValue"
+                   @onfocusout="Name_Invalid" required>
+            <label for="name">Full Name</label>
+            <small class="@nameSml">@smallNameValue</small>
+        </div>
+        <div class="input-container _medium">
+            <input class="@contactInput" type="text" name="contactNumber" id="contactNumber"
+                   @bind="ContactValue" required @onfocusout="Contact_Invalid">
+            <label for="contactNumber">Contact Number</label>
+            <small class="@contactSml">@smallContactValue</small>
+        </div>
+    </div>
+
+    <!--Row 2-->
+    <div class="input-group">
+        <div class="input-container _medium">
+            <input class="@emailInput" type="email" name="email" id="email" @bind="EmailValue"
+                   @onfocusout="Email_Invalid" required>
+            <label class="@emailLbl" for="email">Email Address</label>
+            <small class="@emailSml">@smallEmailValue</small>
+        </div>
+
+        <!--
+            PLEASE STUDY DICTIONARY
+            OR
+
+        -->
+
+        <div class="input-container _medium">
+            <select name="service" id="service" required @bind="ServiceValue" @onfocusout="Service_Invalid">
+                <option value="" hidden></option>
+                <option value="1">Planning & Design</option>
+                <option value="2">Construction</option>
+                <option value="3">Electrical</option>
+                <option value="4">Electronics</option>
+                <option value="5">Mechanical</option>
+                <option value="6">Renovation</option>
+                <option value="7">Plumbing</option>
+                <option value="8">Consultation</option>
+            </select>
+            <label for="service">Service</label>
+            <small class="@serviceSml">Required field</small>
+        </div>
+    </div>
+    <div class="input-group">
+        <div class="input-container _large">
+            <textarea class="messageInput" name="textarea" id="textarea" required @bind="MessageValue"
+                      @onfocusout="Msg_Invalid" spellcheck="true"></textarea>
+            <label for="textarea">Message</label>
+            <small class="@messageSml">@smallMsgValue</small>
+        </div>
+    </div>
+
+    <div class="input-group" style="justify-content: flex-end;">
+        @if (formValid)
+        {
+            <button class="btn btn-outline-primary" type="button" @onclick="ContactUs_Btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        }
+        else
+        {
+            <button class="btn btn-outline-secondary" disabled>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        }
+    </div>
+</form>
+
+@code {
+    private string NameValue;
+    private string ContactValue;
+    private string EmailValue;
+    private string ServiceValue;
+    private string MessageValue;
+
+    //Label
+    private string nameLbl = string.Empty;
+    private string contactLbl = string.Empty;
+    private string emailLbl = string.Empty;
+    private string serviceLbl = string.Empty;
+    private string messageLbl = string.Empty;
+
+    //Input
+    private string nameInput = string.Empty;
+    private string contactInput = string.Empty;
+    private string emailInput = string.Empty;
+    private string serviceInput = string.Empty;
+    private string messageInput = string.Empty;
+
+    //Small
+    private string nameSml = string.Empty;
+    private string contactSml = string.Empty;
+    private string emailSml = string.Empty;
+    private string serviceSml = string.Empty;
+    private string messageSml = string.Empty;
+
+    //Small Alert Value
+    private string smallNameValue = string.Empty;
+    private string smallContactValue = string.Empty;
+    private string smallEmailValue = string.Empty;
+    private string smallServiceValue = string.Empty;
+    private string smallMsgValue = string.Empty;
+
+    //Valid Status
+    private bool nameValid;
+    private bool contactValid;
+    private bool emailValid;
+    private bool msgValid;
+    private bool formValid = false;
+
+    //Modal
+    private string modal = "_modal";
+    private string modalMsg = string.Empty;
+
+    private string modalSave = "_modal";
+    private string modalSaveMsg = string.Empty;
+
+    private void Email_Invalid()
+    {
+
+        var _emailValue = EmailValue;
+
+        if (!string.IsNullOrWhiteSpace(_emailValue))
+        {
+            _emailValue.Trim();
+
+            if ((_emailValue.Contains(' ')) ||
+            (_emailValue.EndsWith("@.com")) ||
+            !(_emailValue.Contains('@')) ||
+            !(_emailValue.EndsWith(".com")))
+            {
+                smallEmailValue = "Invalid email address";
+                emailLbl = "_invalid";
+                emailInput = "_invalid-input";
+                emailSml = "small-show";
+
+                emailValid = false;
+            }
+            else
+            {
+                emailLbl = "_invalid";
+                emailInput = "_valid-input";
+                emailSml = "_valid-small";
+                emailValid = true;
+
+            }
+        }
+        else if (string.IsNullOrEmpty(_emailValue))
+        {
+            //If empty or whitespace
+            emailInput = "_valid-input";
+            emailSml = "_valid-small";
+            emailLbl = "_valid-label";
+
+            emailValid = true;
+
+        }
+
+        Form_Valid();
+
+    }
+
+    private void Name_Invalid()
+    {
+        var _nameValue = NameValue;
+
+        if (!string.IsNullOrWhiteSpace(_nameValue))
+        {
+            string _trimmedName = _nameValue.Trim();
+
+            if (_nameValue.Length <= 3)
+            {
+                smallNameValue = "Name too short";
+                nameLbl = "_invalid";
+                nameInput = "_invalid-input";
+                nameSml = "small-show";
+
+                nameValid = false;
+            }
+            else
+            {
+                if (!_trimmedName.All(Char.IsLetter) && _trimmedName.All(Char.IsDigit))
+                {
+                    smallNameValue = "Invalid name";
+                    nameLbl = "_invalid";
+                    nameInput = "_invalid-input";
+                    nameSml = "small-show";
+
+                    nameValid = false;
+                }
+                else
+                {
+                    nameLbl = "_invalid";
+                    nameInput = "_valid-input";
+                    nameSml = "_valid-small";
+                    nameValid = true;
+
+                }
+            }
+        }
+        else if (string.IsNullOrEmpty(_nameValue))
+        {
+            //If empty or whitespace
+
+            nameInput = "_valid-input";
+            nameSml = "_valid-small";
+            nameLbl = "_valid-label";
+
+            nameValid = true;
+
+        }
+        Form_Valid();
+
+    }
+
+    /**
+        Please be specific in validation filter, like: of number starts with 63, 09, 9,
+        Then add in the back-end that the number will starts in 09 to have a specific length of the number (11 char).
+        If the number is < 10 and !starts with 9 or 09 and <=7,
+        Then both number is too short.
+
+        -- In addition, also study switch for much clear looping.
+    **/
+
+    private void Contact_Invalid()
+    {
+
+        var _contactValue = fv.NumberDefaultFormat(ContactValue);
+
+        if (!string.IsNullOrWhiteSpace(_contactValue))
+        {
+            var _trimmedContact = _contactValue.Trim();
+
+            if (_trimmedContact.Length >= 7)
+            {
+                bool containsNumber = _trimmedContact.All(char.IsDigit);
+
+                if (containsNumber)
+                {
+                    contactInput = "_valid-input";
+                    contactSml = "_valid-small";
+                    contactLbl = "_valid-label";
+                    contactValid = true;
+
+                    System.Console.WriteLine(_trimmedContact);
+                    ContactValue = _trimmedContact;
+                }
+                else
+                {
+                    smallContactValue = "Invalid contact number";
+                    contactLbl = "_invalid";
+                    contactInput = "_invalid-input";
+                    contactSml = "small-show";
+
+                    contactValid = false;
+
+                }
+            }
+            else
+            {
+                smallContactValue = "Invalid contact number";
+                contactLbl = "_invalid";
+                contactInput = "_invalid-input";
+                contactSml = "small-show";
+
+                contactValid = false;
+
+                smallContactValue = "Number too short.";
+            }
+        }
+        else if (string.IsNullOrEmpty(_contactValue))
+        {
+            //If empty or whitespace
+
+            contactInput = "_valid-input";
+            contactSml = "_valid-small";
+            contactLbl = "_valid-label";
+
+            contactValid = true;
+
+        }
+        Form_Valid();
+
+    }
+    private void Service_Invalid()
+    {
+
+        var _serviceValue = ServiceValue;
+
+        if (!string.IsNullOrWhiteSpace(_serviceValue))
+        {
+            serviceInput = "_valid-input";
+            serviceSml = "_valid-small";
+            serviceLbl = "_valid-label";
+
+        }
+        else if (string.IsNullOrEmpty(_serviceValue))
+        {
+            //If empty or whitespace
+
+            serviceInput = "_valid-input";
+            serviceSml = "_valid-small";
+            serviceLbl = "_valid-label";
+
+        }
+        Form_Valid();
+
+    }
+    private void Msg_Invalid()
+    {
+
+        var _messageValue = MessageValue;
+
+        if (!string.IsNullOrWhiteSpace(_messageValue))
+        {
+            string _trimmedMsg = _messageValue.Trim();
+
+            if (_trimmedMsg.Length < 10)
+            {
+                smallMsgValue = "Message too short.";
+                messageLbl = "_invalid";
+                messageInput = "_invalid-input";
+                messageSml = "small-show";
+
+                msgValid = false;
+            }
+            else
+            {
+                messageLbl = "_invalid";
+                messageInput = "_valid-input";
+                messageSml = "_valid-small";
+                msgValid = true;
+
+                MessageValue = fv.FirstLetterToUpper(_messageValue);
+
+            }
+        }
+        else if (string.IsNullOrEmpty(_messageValue))
+        {
+            //If empty or whitespace
+
+            messageInput = "_valid-input";
+            messageSml = "_valid-small";
+            messageLbl = "_valid-label";
+
+            msgValid = true;
+
+        }
+        Form_Valid();
+
+    }
+
+    private bool Form_Valid()
+    {
+        if ((string.IsNullOrEmpty(NameValue)) ||
+        (string.IsNullOrEmpty(ContactValue)) ||
+        (string.IsNullOrEmpty(ServiceValue)) ||
+        (string.IsNullOrEmpty(MessageValue))
+        )
+        {
+            return formValid = false;
+        }
+        else
+        {
+            if ((nameValid) ||
+            (contactValid) ||
+            (emailValid) ||
+            (msgValid)
+            )
+            {
+                return formValid = true;
+            }
+            else
+            {
+                return formValid = false;
+            }
+        }
+    }
+    private void ContactUs_Btn()
+    {
+        if (formValid)
+        {
+            modalSave = "_modal modal-show";
+            //modalSaveMsg = $"Name: {NameValue}, Contact Number: {ContactValue}, Email Address: {EmailValue}, Service: {ServiceValue}, and Message: {MessageValue}";
+        }
+        else
+        {
+            modalSave = "_modal";
+        }
+    }
+
+}

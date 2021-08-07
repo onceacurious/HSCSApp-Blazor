@@ -5,6 +5,7 @@
   --white-70: hsla(255, 100%, 100%, 0.7);
   --black: hsl(0, 0%, 0%);
   --black-70: hsla(0, 0%, 0%, 0.7);
+  --black-50: hsla(0, 0%, 0%, 0.5);
   --gray: hsl(0, 0%, 50%);
   --gray-70: hsla(0, 0%, 90%, 0.7);
   --aqua: hsl(194, 100%, 50%);
@@ -66,23 +67,27 @@ a,
 }
 
 /* Animation */
-@keyframes dropDown {
-  0% {
+@keyframes slideUp {
+  from {
     opacity: 0;
+    height: 0;
+    margin-top: 100%;
   }
 
-  100% {
+  to {
     opacity: 1;
+    height: 300%;
+    margin-top: 0;
   }
 }
 
-@keyframes fade {
-  0% {
-    visibility: hidden;
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 
-  100% {
-    visibility: visible;
+  to {
+    opacity: 1;
   }
 }
 

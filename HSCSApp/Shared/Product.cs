@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HSCSApp.Shared
 {
-    public class Services
+    public class Product
     {
         public int Id { get; set; }
         public string Title { get; set; }

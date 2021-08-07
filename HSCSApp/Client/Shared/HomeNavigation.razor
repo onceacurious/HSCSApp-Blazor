@@ -51,13 +51,13 @@
                 </li>
                 <li class="nav-list-item">
                     <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Services
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Planning & Design</a>
+                            <a class="dropdown-item" href="/service/@product.Id">Planning & Design</a>
                             <a class="dropdown-item" href="#">Construction</a>
                             <a class="dropdown-item" href="#">Electrical</a>
                             <a class="dropdown-item" href="#">Electronics</a>
@@ -150,6 +150,7 @@
 
 @code {
 
+    Product product = new Product();
     private string hamburger;
     private string close = "hide";
 

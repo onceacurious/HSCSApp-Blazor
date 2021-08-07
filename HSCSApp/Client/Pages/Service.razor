@@ -1,4 +1,4 @@
-﻿@page "/service"
+﻿@page "/service/{id}"
 @layout HomePage
 
 <style>
@@ -10,9 +10,13 @@
 <title>HOPESTOME | Service</title>
 <section class="services">
     <h1>Services Page</h1>
+    <p>Service for service id @Id</p>
     <HomeFooter />
 </section>
 
 @code {
+
+    [Parameter]
+    public string Id { get; set; }
 
 }

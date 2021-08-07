@@ -10,5 +10,9 @@
   {
     "outputFile": "Pages/Service.razor.css",
     "inputFile": "Pages/Service.razor.scss"
+  },
+  {
+    "outputFile": "Shared/FormLayout.razor.css",
+    "inputFile": "Shared/FormLayout.razor.scss"
   }
 ]

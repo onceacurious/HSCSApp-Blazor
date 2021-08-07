@@ -27,6 +27,7 @@ nav {
     background-color: var(--white);
     font-weight: bold;
     color: var(--aqua);
+    transition: animation 600ms ease;
 
     a {
       color: var(--aqua);
@@ -219,8 +220,7 @@ nav {
 
   .nav-show {
     display: flex !important;
-    animation: fade 600ms ease forwards;
-    transition: animation 600ms ease;
+    animation: fade 5s forwards;
   }
 }
 

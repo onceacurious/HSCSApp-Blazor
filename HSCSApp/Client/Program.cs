@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HSCSApp.Shared.ClassLibrary;
+using HSCSApp.Client.Services.ProductService;
 
 namespace HSCSApp.Client
 {
@@ -18,6 +19,7 @@ namespace HSCSApp.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddIntersectionObserver();
             builder.Services.AddScoped<IFormValidations, FormValidations>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             await builder.Build().RunAsync();
         }

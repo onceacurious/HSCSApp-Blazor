@@ -29,6 +29,10 @@ nav .nav-header {
   background-color: var(--white);
   font-weight: bold;
   color: var(--aqua);
+  -webkit-transition: -webkit-animation 600ms ease;
+  transition: -webkit-animation 600ms ease;
+  transition: animation 600ms ease;
+  transition: animation 600ms ease, -webkit-animation 600ms ease;
 }
 
 nav .nav-header a {
@@ -274,12 +278,8 @@ nav .nav-show {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
-  -webkit-animation: fade 600ms ease forwards;
-          animation: fade 600ms ease forwards;
-  -webkit-transition: -webkit-animation 600ms ease;
-  transition: -webkit-animation 600ms ease;
-  transition: animation 600ms ease;
-  transition: animation 600ms ease, -webkit-animation 600ms ease;
+  -webkit-animation: fade 5s forwards;
+          animation: fade 5s forwards;
 }
 
 @media screen and (max-width: 940px) {

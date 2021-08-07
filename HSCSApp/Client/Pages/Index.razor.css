@@ -49,36 +49,47 @@ section.hero #feature {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-section.hero #feature .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  min-height: 450px;
+  padding: 10px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+section.hero #feature #feature1,
+section.hero #feature #feature4 {
+  width: 100%;
+  margin: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-section.hero #feature .row .flip-box {
+section.hero #feature #feature2,
+section.hero #feature #feature3 {
+  width: 45%;
+  margin: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section.hero #feature .flip-box {
   background-color: transparent;
   width: 150px;
   height: 130px;
@@ -86,7 +97,7 @@ section.hero #feature .row .flip-box {
           perspective: 1000px;
 }
 
-section.hero #feature .row .flip-box-inner {
+section.hero #feature .flip-box-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -98,13 +109,13 @@ section.hero #feature .row .flip-box-inner {
           transform-style: preserve-3d;
 }
 
-section.hero #feature .row .flip-box:hover .flip-box-inner {
+section.hero #feature .flip-box:hover .flip-box-inner {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
 
-section.hero #feature .row .flip-box-front,
-section.hero #feature .row .flip-box-back {
+section.hero #feature .flip-box-front,
+section.hero #feature .flip-box-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -113,12 +124,12 @@ section.hero #feature .row .flip-box-back {
   backface-visibility: hidden;
 }
 
-section.hero #feature .row .flip-box-back {
+section.hero #feature .flip-box-back {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
 }
 
-section.hero #feature img {
+section.hero img {
   border-radius: 5px;
   height: 130px;
   width: 150px;
@@ -140,141 +151,178 @@ section.hero #feature img {
   }
 }
 
-@media screen and (max-width: 411px) {
+@media screen and (max-width: 412px) {
   section.hero {
     padding-top: 120px;
+  }
+  section.hero #feature2,
+  section.hero #feature3 {
+    width: 100% !important;
   }
 }
 
 section.services {
-  position: relative;
   width: 100%;
   min-height: 100vh;
   background-color: var(--aqua-70);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 7rem;
-  z-index: 1;
 }
 
-section.services .col-12 {
+section.services .services-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 10px;
+  width: 100%;
+}
+
+section.services .services-container .box-container {
+  border: 1px solid --white;
+  width: 25%;
+  min-width: 305px;
+  height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-section.services .col-12 .box {
-  margin: auto 15px;
-  border: 1px solid --white;
-}
-
-section.services .service-container {
-  display: inherit;
+section.services .services-container .box-container .box-content {
+  width: 90%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-section.services .item-container {
   background-color: var(--white);
-  -webkit-box-shadow: 6px 6px 2px var(--black-70);
-          box-shadow: 6px 6px 2px var(--black-70);
   color: var(--aqua);
 }
 
-section.services .item-details {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-section.services .item-header {
-  font-size: medium;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-section.services img {
-  height: 200px;
-  width: 250px;
-  z-index: 3;
-}
-
-section.services .img-container {
+section.services .services-container .box-container .box-content .img-container {
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
   position: relative;
-  z-index: 1;
 }
 
-section.services .img-overlay {
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  height: 200px;
-  width: 250px;
+section.services .services-container .box-container .box-content .img-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 600ms ease-in-out;
+  transition: -webkit-transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out, -webkit-transform 600ms ease-in-out;
+}
+
+section.services .services-container .box-container .box-content .img-container .img-overlay {
+  display: none;
+  opacity: 0;
   background-color: var(--aqua-70);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: -webkit-animation 250ms ease;
-  transition: -webkit-animation 250ms ease;
-  transition: animation 250ms ease;
-  transition: animation 250ms ease, -webkit-animation 250ms ease;
-  z-index: 5;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-section.services .img-overlay .btn {
+section.services .services-container .box-container .box-content .img-container .img-overlay .btn {
   border: 2px solid var(--white);
+  color: var(--white);
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+section.services .services-container .box-container .box-content .img-container .img-overlay .btn:hover {
   background-color: var(--white);
   color: var(--aqua);
-  cursor: pointer;
 }
 
-section.services .img-overlay .btn:hover {
-  background-color: transparent;
-  color: var(--white);
-  -webkit-box-shadow: 0px 0px 6px var(--white);
-          box-shadow: 0px 0px 6px var(--white);
+section.services .services-container .box-container .box-content .img-container:hover .img-overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: fade-in 600ms forwards;
+          animation: fade-in 600ms forwards;
 }
 
-section.services .img-container:hover {
-  overflow: hidden;
-}
-
-section.services .img-container:hover .img-overlay {
-  -webkit-animation: fade 5s ease forwards;
-          animation: fade 5s ease forwards;
-}
-
-section.services .img-container:hover img {
-  -o-object-fit: fill;
-     object-fit: fill;
+section.services .services-container .box-container .box-content .img-container:hover img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  -webkit-transition: -webkit-transform 350ms ease;
-  transition: -webkit-transform 350ms ease;
-  transition: transform 350ms ease;
-  transition: transform 350ms ease, -webkit-transform 350ms ease;
+}
+
+section.services .services-container .box-container .box-content .box-details {
+  width: 100%;
+  height: 40%;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+}
+
+section.services .services-container .box-container .box-content .box-details .box-header h4 {
+  font-weight: bolder;
+}
+
+section.services .services-container .box-container .box-content .box-details p {
+  display: none;
+  font-size: medium;
+}
+
+section.services .services-container .box-container .box-content .img-container:hover + .box-details {
+  background-color: var(--aqua);
+  color: var(--white);
+}
+
+section.services .services-container .box-container .box-content .img-container:hover + .box-details .box-header {
+  display: none;
+}
+
+section.services .services-container .box-container .box-content .img-container:hover + .box-details p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-animation: slideUp 1s forwards;
+          animation: slideUp 1s forwards;
 }
 
 section.footer {
@@ -492,15 +540,15 @@ section.footer .col-12 .rights-reserve {
 
 .quotation-container .left .service-icon {
   position: absolute;
-  top: 50px;
+  top: 200px;
   right: -100px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
   background-color: var(--white);
   border: 2px solid var(--aqua);
-  -webkit-box-shadow: inset 0px 0px 6px var(--black);
-          box-shadow: inset 0px 0px 6px var(--black);
+  -webkit-box-shadow: inset 3px -3px 10px var(--black-50), inset 2px 2px 6px var(--gray-70), inset -3px 2px 4px var(--black-70), inset 2px 2px 3px var(--black-70);
+          box-shadow: inset 3px -3px 10px var(--black-50), inset 2px 2px 6px var(--gray-70), inset -3px 2px 4px var(--black-70), inset 2px 2px 3px var(--black-70);
   z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -512,21 +560,19 @@ section.footer .col-12 .rights-reserve {
       -ms-flex-pack: center;
           justify-content: center;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 4px var(--black);
-          box-shadow: 0px 0px 4px var(--black);
 }
 
 .quotation-container .left .service-icon img {
-  width: 120px;
-  height: 120px;
+  width: 60%;
+  height: 60%;
   -webkit-filter: drop-shadow(2px 4px 2px var(--black));
           filter: drop-shadow(2px 4px 2px var(--black));
 }
 
 .quotation-container .right {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
   width: 100%;
   height: 100vh;
   background-color: var(--white);
@@ -558,6 +604,51 @@ section.footer .col-12 .rights-reserve {
   -webkit-box-shadow: 0px 0px 6px var(--black);
           box-shadow: 0px 0px 6px var(--black);
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+}
+
+@media screen and (max-width: 1049px) {
+  .quotation .service-icon {
+    -webkit-transform: scale(80%);
+            transform: scale(80%);
+  }
+}
+
+@media screen and (max-width: 912px) {
+  .quotation .service-icon {
+    -webkit-transform: scale(70%);
+            transform: scale(70%);
+  }
+}
+
+@media screen and (max-width: 756px) {
+  .quotation .service-icon {
+    -webkit-transform: scale(55%);
+            transform: scale(55%);
+  }
+}
+
+@media screen and (max-width: 556px) {
+  .quotation .service-icon {
+    -webkit-transform: scale(45%);
+            transform: scale(45%);
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .quotation .service-icon {
+    -webkit-transform: scale(35%);
+            transform: scale(35%);
+  }
 }
 
 ._show-quote {
