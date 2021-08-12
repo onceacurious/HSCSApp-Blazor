@@ -1,5 +1,6 @@
 ﻿@page "/service/{id}"
 @layout HomePage
+@inject IProductService ProductService
 
 <style>
     .home-footer a {
@@ -10,13 +11,20 @@
 <title>HOPESTOME | Service</title>
 <section class="services">
     <h1>Services Page</h1>
-    <p>Service for service id @Id</p>
+    <p>Service for service title </p>
+    <Counter />
     <HomeFooter />
 </section>
 
 @code {
 
+    private Product product;
+
     [Parameter]
     public string Id { get; set; }
 
+    protected override void OnInitialized()
+    {
+        product = ProductService.Products.FirstOrDefault(p => p.Id == Int32.Parse(Id));
+    }
 }

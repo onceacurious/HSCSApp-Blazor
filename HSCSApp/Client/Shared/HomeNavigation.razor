@@ -1,4 +1,5 @@
 @inject IJSRuntime js
+@inject IProductService ps
 
 <style>
     .color {
@@ -57,14 +58,10 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="/service/@product.Id">Planning & Design</a>
-                            <a class="dropdown-item" href="#">Construction</a>
-                            <a class="dropdown-item" href="#">Electrical</a>
-                            <a class="dropdown-item" href="#">Electronics</a>
-                            <a class="dropdown-item" href="#">Mechanical</a>
-                            <a class="dropdown-item" href="#">Renovation</a>
-                            <a class="dropdown-item" href="#">Plumbing</a>
-                            <a class="dropdown-item" href="#">Consultation</a>
+                            @foreach (var product in ps.Products)
+                            {
+                                <a class="dropdown-item" href="/service/@product.Id">@product.Title</a>
+                            }
                         </div>
                     </div>
                 </li>
@@ -147,55 +144,3 @@
         </div>
     </div>
 </nav>
-
-@code {
-
-    Product product = new Product();
-    private string hamburger;
-    private string close = "hide";
-
-    private string toggleMenu = "hide";
-
-    private string serviceMenu = "hide";
-
-    private void Toggler()
-    {
-        if (close == "hide")
-        {
-            hamburger = "hide";
-            close = string.Empty;
-            toggleMenu = "toggle-menu";
-        }
-        else
-        {
-            hamburger = string.Empty;
-            close = "hide";
-            toggleMenu = "hide";
-        }
-    }
-
-    private void ToggleMenu_Clicked()
-    {
-        toggleMenu = "hide";
-        close = "hide";
-        hamburger = string.Empty;
-    }
-
-    private void Service_Clicked()
-    {
-        if (serviceMenu == "hide")
-        {
-            serviceMenu = "service-menu";
-        }
-        else
-        {
-            serviceMenu = "hide";
-        }
-    }
-
-    private void Service_focusOut()
-    {
-        serviceMenu = "hide";
-    }
-
-}

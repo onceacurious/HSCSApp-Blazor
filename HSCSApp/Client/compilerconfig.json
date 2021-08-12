@@ -14,5 +14,13 @@
   {
     "outputFile": "Shared/FormLayout.razor.css",
     "inputFile": "Shared/FormLayout.razor.scss"
+  },
+  {
+    "outputFile": "Shared/Quotation.razor.css",
+    "inputFile": "Shared/Quotation.razor.scss"
+  },
+  {
+    "outputFile": "Shared/QuotationForm.razor.css",
+    "inputFile": "Shared/QuotationForm.razor.scss"
   }
 ]

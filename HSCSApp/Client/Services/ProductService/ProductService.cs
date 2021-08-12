@@ -80,5 +80,11 @@ namespace HSCSApp.Client.Services.ProductService
                 },
             };
         }
+
+        public string LoadTitle(int index)
+        {
+            string title = Products.FirstOrDefault(x => x.Id == index).Title.ToString();
+            return title;
+        }
     }
 }

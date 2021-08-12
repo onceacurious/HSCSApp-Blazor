@@ -23,10 +23,16 @@ PLAN:
 
 
 
+
 APPLICATION FLOW:
 -Customer go to the website
 -Then if He/She click "Get A Quote" cta:
 -|-He/She will be redirected to Services Page, with a quotation form displayed.
+-Quotation Per service
+-|-Logic:
+-|--If CTA get a quote was click then the Icon Service will be the quote
+-|--If Service was click the Id will be the base of the Icon and the service selection will also be service clicked and it can't be change
+Solution: serviceIcon and selectedService variable
 
 
 BACKEND FLOW:

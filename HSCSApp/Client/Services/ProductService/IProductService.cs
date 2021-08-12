@@ -8,5 +8,7 @@ namespace HSCSApp.Client.Services.ProductService
         List<Product> Products { get; set; }
 
         void LoadProducts();
+
+        string LoadTitle(int index);
     }
 }

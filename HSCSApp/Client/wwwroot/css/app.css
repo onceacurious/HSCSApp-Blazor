@@ -1,145 +1,148 @@
 ﻿@import url("open-iconic/font/css/open-iconic-bootstrap.min.css");
 
 :root {
-  --white: hsl(255, 100%, 100%);
-  --white-70: hsla(255, 100%, 100%, 0.7);
-  --black: hsl(0, 0%, 0%);
-  --black-70: hsla(0, 0%, 0%, 0.7);
-  --black-50: hsla(0, 0%, 0%, 0.5);
-  --gray: hsl(0, 0%, 50%);
-  --gray-70: hsla(0, 0%, 90%, 0.7);
-  --aqua: hsl(194, 100%, 50%);
-  --aqua-70: hsla(194, 100%, 50%, 0.7);
+    --white: hsl(255, 100%, 100%);
+    --white-70: hsla(255, 100%, 100%, 0.7);
+    --black: hsl(0, 0%, 0%);
+    --black-70: hsla(0, 0%, 0%, 0.7);
+    --black-50: hsla(0, 0%, 0%, 0.5);
+    --gray: hsl(0, 0%, 50%);
+    --gray-70: hsla(0, 0%, 90%, 0.7);
+    --aqua: hsl(194, 100%, 50%);
+    --aqua-70: hsla(194, 100%, 50%, 0.7);
 }
 
 html,
 body {
-  font-family: "Poppins", sans-serif;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 a,
 .btn-link {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .content {
-  padding-top: 1.1rem;
+    padding-top: 1.1rem;
 }
 
 .valid.modified:not([type="checkbox"]) {
-  outline: 1px solid #26b050;
+    outline: 1px solid #26b050;
 }
 
 .invalid {
-  outline: 1px solid red;
+    outline: 1px solid red;
 }
 
 .validation-message {
-  color: red;
+    color: red;
 }
 
 #blazor-error-ui {
-  background: lightyellow;
-  bottom: 0;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-  display: none;
-  left: 0;
-  padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
-#blazor-error-ui .dismiss {
-  cursor: pointer;
-  position: absolute;
-  right: 0.75rem;
-  top: 0.5rem;
-}
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
 
 /* Animation */
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    height: 0;
-    margin-top: 100%;
-  }
+    from {
+        opacity: 0;
+        height: 0;
+        margin-top: 100%;
+    }
 
-  to {
-    opacity: 1;
-    height: 300%;
-    margin-top: 0;
-  }
+    to {
+        opacity: 1;
+        height: 300%;
+        margin-top: 0;
+    }
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
+    from {
+        opacity: 0;
+    }
 
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes colorWarning {
-  0% {
-    color: hsl(0, 100%, 52%);
-    font-weight: 100%;
-  }
+    0% {
+        color: hsl(0, 100%, 52%);
+        font-weight: normal;
+    }
 
-  25% {
-    color: hsl(20, 100%, 52%);
-    font-weight: 110%;
-  }
+    25% {
+        color: hsl(20, 100%, 52%);
+        font-weight: 100;
+    }
 
-  50% {
-    color: hsl(44, 100%, 52%);
-    font-weight: 120%;
-  }
+    50% {
+        color: hsl(44, 100%, 52%);
+        font-weight: 200;
+    }
 
-  75% {
-    color: hsl(91, 100%, 52%);
-    font-weight: bold;
-  }
+    75% {
+        color: hsl(91, 100%, 52%);
+        font-weight: bold;
+    }
 
-  100% {
-    color: hsl(5, 100%, 52%);
-    font-weight: bolder;
-  }
+    100% {
+        color: hsl(5, 100%, 52%);
+        font-weight: bolder;
+    }
 }
 
 @keyframes quote-slide-in {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-    visibility: visible;
-  }
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+        visibility: visible;
+    }
 }
 
 @keyframes quote-slide-out {
-  from {
-    margin-left: 0%;
-    width: 100%;
-    visibility: visible;
-  }
-  50% {
-    visibility: hidden;
-  }
-  to {
-    margin-left: 100%;
-    width: 300%;
-    visibility: hidden;
-  }
+    from {
+        margin-left: 0%;
+        width: 100%;
+        visibility: visible;
+    }
+
+    50% {
+        visibility: hidden;
+    }
+
+    to {
+        margin-left: 100%;
+        width: 300%;
+        visibility: hidden;
+    }
 }

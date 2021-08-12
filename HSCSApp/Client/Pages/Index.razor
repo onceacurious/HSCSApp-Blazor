@@ -4,34 +4,25 @@
 @inject IIntersectionObserverService observer
 @implements IAsyncDisposable
 @inject IProductService productService
+@inject IJSInProcessRuntime JSInProcessRuntime
 <!--
     Notes:
     There will be a floating card at the very start of the application for new updates
     and other thing that needs attention and can be close afterwards.
 -->
+<style>
+    ._show-quote {
+        display: flex !important;
+        animation: quote-slide-in 600ms ease forwards;
+    }
 
+    ._test {
+        background-color: red !important;
+    }
+</style>
 <title>Hopestone Construction Services | The Pioneer of Construction Innovation</title>
 <!-- Service Quotation-->
-<div class="quotation @showQuote">
-    <div class="quotation-container">
-        <button type="button" class="close" data-dismiss="" aria-label="Close" @onclick="CloseQuote">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="left">
-            <div class="service-icon">
-                <img src=@serviceIcon alt="Service Icon">
-            </div>
-        </div>
-        <div class="right">
-            <div class="service-title">
-                <h4>@serviceTitle</h4>
-            </div>
-            <div class="form-container">
-                <FormLayout />
-            </div>
-        </div>
-    </div>
-</div>
+<QuotationForm />
 
 <section class="hero">
     <div class="container-fluid">
@@ -53,7 +44,7 @@
                                 We aim to provide outstanding Customer Service and distinctive interior/exterior
                                 designs.
                             </p>
-                            <a class="btn cta-btn" @onclick="ShowQuote">Get A Quote</a>
+                            <a class="btn cta-btn" @onclick="CTA_Clicked">Get A Quote</a>
                         </div>
                     </div>
                 </div>
@@ -108,68 +99,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Top Row-->
-                    @*
-
-                        <div id="topRow" class="row">
-                        <div class="col-12">
-                        <div class="flip-box">
-                        <div class="flip-box-inner">
-                        <div class="flip-box-front">
-                        <img src="images/hero1.jpg" alt="">
-                        </div>
-                        <div class="flip-box-back">
-                        <img src="images/feature1.jpg" alt="">
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Mid Row -->
-                        <div id="midRow" class="row">
-                        <div class="col-12 d-flex flex-row">
-                        <div class="col-md-6">
-                        <div class="flip-box">
-                        <div class="flip-box-inner">
-                        <div class="flip-box-front">
-                        <img src="images/hero2.jpg" alt="">
-                        </div>
-                        <div class="flip-box-back">
-                        <img src="images/feature2.jpg" alt="">
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="flip-box">
-                        <div class="flip-box-inner">
-                        <div class="flip-box-front">
-                        <img src="images/hero3.jpg" alt="">
-                        </div>
-                        <div class="flip-box-back">
-                        <img src="images/feature3.jpg" alt="">
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!--Bottom Row -->
-                        <div id="botRow" class="row">
-                        <div class="col-12">
-                        <div class="flip-box">
-                        <div class="flip-box-inner">
-                        <div class="flip-box-front">
-                        <img src="images/hero4.jpg" alt="">
-                        </div>
-                        <div class="flip-box-back">
-                        <img src="images/feature4.jpg" alt="">
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                    *@
                 </div>
             </div>
         </div>
@@ -184,7 +113,7 @@
                 <div class="box-content">
                     <div class="img-container">
                         <div class="img-overlay">
-                            <a class="btn" @onclick="ShowPlanning">
+                            <a class="btn btn-img-overlay" id="@product.Id" @onclick="Service_Clicked">
                                 <i class="fas fa-edit"></i>
                                 Get a quote
                             </a>
@@ -200,165 +129,6 @@
                 </div>
             </div>
         }
-
-        @* <div class="col-12">
-
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowPlanning">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/planning.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Planning & Design</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowConstruction">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/construction.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Construction</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowRenovation">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/renovation.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Renovation</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowMechanical">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/mechanical.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Mechanical</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-
-            <div class="col-12">
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowElectrical">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/electrical.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Electrical</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowElectronics">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/electronics.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Electronics</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowPlumbing">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/plumbing.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Plumbing</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div class="box">
-            <div class="item-container">
-            <div class="item-content">
-            <div class="img-container">
-            <div class="img-overlay">
-            <a class="btn" @onclick="ShowConsult">
-            <i class="fas fa-edit"></i>
-            Get a quote
-            </a>
-            </div>
-            <img loading="lazy" src="images/consultation.jpg" alt="">
-            </div>
-            <div class="item-details">
-            <div class="item-header">Consultation</div>
-            <p>Lorem ipsum dolor sit amet.</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>*@
     </div>
 </section>
 
@@ -367,7 +137,7 @@
     This two additional section will display plus button if nothing to display using if condition
     -->
 
-<section @ref="footerObserver" class="footer">
+<section @ref="FooterObserver" class="footer">
     <div class="col-12">
 
         <div class="box">
@@ -459,134 +229,3 @@
         </div>
     </div>
 </section>
-
-@code {
-
-    protected override void OnInitialized()
-    {
-        productService.LoadProducts();
-    }
-
-    public ElementReference footerObserver { get; set; }
-
-    public bool IsIntersecting { get; set; }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-
-        if (firstRender)
-        {
-            await SetupObserver();
-        }
-    }
-
-    public async Task SetupObserver()
-    {
-        var options = new IntersectionObserverOptions
-        {
-            RootMargin = "10px 0px 0px 0px"
-        };
-
-        await observer.Observe(footerObserver, (entries) =>
-        {
-            var entry = entries.FirstOrDefault();
-            IsIntersecting = entry.IsIntersecting;
-            StateHasChanged();
-
-            if (entry.IsIntersecting)
-            {
-                js.InvokeVoidAsync("ShowHeader");
-            }
-            else
-            {
-                js.InvokeVoidAsync("HideHeader");
-
-            }
-        }, options);
-
-    }
-
-    private IntersectionObserver Observer;
-    public async ValueTask DisposeAsync()
-    {
-
-        if (this.Observer != null)
-        {
-            await this.Observer.Dispose();
-        }
-        else
-        {
-            await js.InvokeVoidAsync("HideHeader");
-        }
-    }
-
-    //Quote Pop-over
-    //Service
-    private string serviceIcon = string.Empty;
-    private string serviceTitle = string.Empty;
-    private string showQuote = string.Empty;
-    //private string showQuote = "_show-quote";
-    ProductService product = new ProductService();
-
-    private void ShowPlanning()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/planning_icon.png";
-        serviceTitle = "planning & design";
-    }
-    private void ShowConstruction()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/construction_icon.png";
-        serviceTitle = "Construction";
-    }
-    private void ShowRenovation()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/renovation_icon.png";
-        serviceTitle = "Renovation";
-    }
-    private void ShowMechanical()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/mechanic_icon.png";
-        serviceTitle = "Mechanical";
-    }
-    private void ShowElectrical()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/electrical_icon.png";
-        serviceTitle = "Electrical";
-    }
-    private void ShowElectronics()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/electronics_icon.png";
-        serviceTitle = "Electronics";
-    }
-    private void ShowPlumbing()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/plumbing_icon.png";
-        serviceTitle = "Plumbing";
-    }
-    private void ShowConsult()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/consult_icon.png";
-        serviceTitle = "Consultation";
-    }
-
-    private void ShowQuote()
-    {
-        showQuote = "_show-quote";
-        serviceIcon = "images/quote_icon.png";
-        serviceTitle = "Quotation Form";
-    }
-
-    private void CloseQuote()
-    {
-        showQuote = "_hide-quote";
-    }
-
-}

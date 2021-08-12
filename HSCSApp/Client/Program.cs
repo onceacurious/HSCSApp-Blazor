@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HSCSApp.Shared.ClassLibrary;
 using HSCSApp.Client.Services.ProductService;
+using Microsoft.JSInterop;
 
 namespace HSCSApp.Client
 {
@@ -20,6 +21,9 @@ namespace HSCSApp.Client
             builder.Services.AddIntersectionObserver();
             builder.Services.AddScoped<IFormValidations, FormValidations>();
             builder.Services.AddScoped<IProductService, ProductService>();
+
+            builder.Services.AddSingleton(serviceProvider => (IJSInProcessRuntime)serviceProvider.GetRequiredService<IJSRuntime>());
+            builder.Services.AddSingleton(serviceProvider => (IJSUnmarshalledRuntime)serviceProvider.GetRequiredService<IJSRuntime>());
 
             await builder.Build().RunAsync();
         }

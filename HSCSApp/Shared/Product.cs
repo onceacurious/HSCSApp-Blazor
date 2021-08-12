@@ -16,9 +16,6 @@ namespace HSCSApp.Shared
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
-        public Quotation Quotation { get; set; }
-
-        public int QuotationId { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; }
     }
